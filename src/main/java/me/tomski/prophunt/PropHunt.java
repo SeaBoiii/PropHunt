@@ -64,11 +64,12 @@ public class PropHunt extends JavaPlugin{
 			init();
 		} catch (IOException e1) {
 			e1.printStackTrace();
-		}
+            		}
 		try {
 		    MetricsLite metrics = new MetricsLite(this);
 		    metrics.start();
 		} catch (IOException e) {
+            e.printStackTrace();
 		}
 		 getServer().getLogger().setFilter(new LogFilter());
 	}
