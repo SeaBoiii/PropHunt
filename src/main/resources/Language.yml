@@ -1,0 +1,69 @@
+# Dont change this config!
+# If you want to use your own messages, copy this file, rename it, edit the strings
+# and change the UseLanguageFile: "English.yml" to "Yourfile.yml"
+
+# HAPPY DAYS
+
+# Game Messages
+toggle_block_lock_on: "You are now block locked!"
+toggle_block_lock_off: "You are no longer block locked"
+no_item_sharing: "You can't share items here"
+no_game_comamnds: "You can't use commands whilst in game"
+disguises_blown: "30 Seconds left! Hiders disguises have been blown!"
+game_time_left: " seconds left in the round!"
+seeker_delay: "Hiders have a head start! Get ready!"
+seeker_delay_end: "You are free to hunt the hiders!"
+solid_block: "You have become a solid block! Don't Move!"
+broken_solid_block: "You have broken your solid block due to moving"
+
+hider_death_message: " has died and become a seeker"
+seeker_death_message: "A Seeker has been killed!"
+time_increase_message: "Time has been increased by: "
+seeker_lives_message: "{seeker} has {lives} lives left!"
+quit_game_message: "You have quit the game"
+game_start_message_hiders: "The game has started! HIDE from the seekers!"
+game_start_message_seeker: "The game has started! Seek out the hidden!"
+spectating: "You are spectating"
+join_lobby_message: "You have joined the lobby"
+
+#Server
+server_full_message: "Sorry this server is full!"
+motd_in_game: "&cSeekers: {seekers} | &aHiders: {hiders} | &eTimeLeft: {time}"
+motd_in_lobby: "&6In Lobby! &aLobby Players: {lobbyplayers} | &2&lJoin!"
+block_access_in_game: "&6Sorry, you can't join whilst the game is in progress"
+
+# Hosting
+hosting_automatically_cant_host: "Game is being hosted automatically, you can't host now"
+hosting_automatically_broadcast_dedicated: "PropHunt is being hosted automatically! Next arena is: {arena}"
+hosting_automatically_broadcast: "PropHunt is being hosted automatically! Next arena is: {arena}. Use &6'/prophunt join' &a to play!"
+game_already_hosted: "Game already being hosted"
+game_cant_host: "You cant host this game at the moment"
+game_host: "You are now hosting PropHunt"
+host_broadcast: "PropHunt in Arena: {arena} is being hosted by {host}! Use &6'/prophunt join' &a to play!"
+arena_not_ready_for_hosting: "The arena isn't ready for hosting yet! Please set it up correctly"
+not_enough_players: "You need {playeramount} players to start!"
+broadcast_first_seeker: "{seeker} is the first Seeker!"
+player_join_lobby: " has joined the game"
+starting_in_60: "PropHunt round starting in {time} seconds! /PH Join to play!"
+starting_in_60_dedi: "Prophunt round starting in {time} seconds!"
+# Game End reasons
+hiders_won_time: "GAMEOVER! Seekers have ran out of time!"
+hiders_won_seekers_quit: "GAMEOVER! Seekers have quit!"
+hiders_won_kills: "GAMEOVER! All Seekers have been killed!"
+hiders_won: "GAMEOVER! Hiders have won!"
+seekers_won_hiders_quit: "GAMEOVER! Hiders have quit!"
+seekers_won: "GAMEOVER! Seekers have won!"
+host_ended: "GAMEOVER! Host has ended the match!"
+
+# Disguise
+disguise_error: "There is something wrong with your disguise, please report: 'null' to an admin"
+disguise_message: "You have been disguised as a "
+
+# setup
+seeker_spawn_set: "Seeker spawn Set"
+hider_spawn_set: "Hider spawn Set"
+lobby_spawn_set: "Lobby spawn Set"
+spectator_spawn_set: "Spectator spawn Set"
+exit_spawn_set: "Exit spawn Set"
+arena_complete: "Arena setup complete!"
+

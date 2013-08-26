@@ -1,0 +1,41 @@
+- V 1.32
+	- Add MessageBank server full msg
+	- Add "prophunt.joinoverride" permission to override 'full' servers 
+	- Add kick back to server support in bungee
+	- Bring out Server MOTD messages to Language Config
+	- Fixing Tab doing weird things on disguises blown
+	- Add send data on last player out of the server (bungee support)
+	- Fixes auto breaking if a player logs out after min players have been achieved	
+	- Adds scoreboards! OH YEAH
+	- Adds ability to disable joining to a server whilst game is in progress. Ops and "prophunt.joinoverride" override this!
+	- Fix auto-respawn bug! No more Limbo Cobb!
+	- Sends disable joining to PropHuntSigns (You must have ProphuntSigns 1.3 or HIGHER, YOU ASBOLUTELY MUST)
+	- Redirect players that connect during game if that option is enabled
+- V 1.33
+	- Sends the fake max player count if in use
+	- Add real lobby timer with configurable time. use {time} in the starting_in_60 language file
+	- Clean scoreboard up
+	- Stop Hiders suiciding and bypassing seeker delay
+	- Stops dedicated mode join spam after a game!
+- V 1.34
+ 	- Clean dedicated mode spam
+ 	- Adds dispatch commands for dedicated & automatic users
+ 	- More development on scoreboards (STILL BETA)
+- V 1.35
+    - Fix xp bar lols
+    - Fix type in the config loader
+    - Adds {kickalltohub} command
+    - Fixing up some scoreboard bugs
+    - fix npe on TAB
+    - only broadcast lobby messages to lobby players
+    - Adds improved Solid block mode using Duncan's hacky method -.-
+    - Fix dedicated broadcast to regex!
+    - Update with ProtoclLib dev
+    - Adds support for 0 intervals
+    - Fix derp in lobby broadcast
+    - Adds thread for quick redisguise after solid block
+    - Prevent client side block dissapearing
+    - Adding metrics
+    - Prevent kicking when a player is ontop of a disguised block
+    - Fix npe with refresh disguises
+    - Fix blow disguises not responding to solid blocks

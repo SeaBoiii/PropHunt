@@ -1,0 +1,59 @@
+# Dutch Language by xBier
+
+# Game Berichten
+toggle_block_lock_on: "Je bent nu goed gezet!"
+toggle_block_lock_off: "Je staat niet meer goed!"
+no_item_sharing: "Je kunt hier geen spullen gooien"
+no_game_comamnds: "Je kunt geen commands uitvoeren terwijl je in het spel zit"
+disguises_blown: "30 Seconden zijn over! Verstoppers vermomming is bekent!"
+game_time_left: " seconden over in deze ronde!"
+seeker_delay: "Verstoppers hebben een voorsprong! Maak je klaar!"
+seeker_delay_end: "Je bent vrij om op de Verstoppers te jagen!"
+solid_block: "Je bent nu een realistisch blok! Niet bewegen!"
+broken_solid_block: "Je bent geen realistisch blok meer omdat je bewoog"
+
+hider_death_message: " is dood en is een Zoeker geworden"
+seeker_death_message: "Een Zoeker is gedood!"
+time_increase_message: "Tijd is verhoogd met: "
+seeker_lives_message: "{seeker} heeft {lives} levens over!"
+quit_game_message: "Je hebt de game verlaten"
+game_start_message_hiders: "De game is gestart! VERSTOP je voor de Zoekers"
+game_start_message_seeker: "De game is gestart! Op zoek gaan naar de Verstoppers!"
+spectating: "Je bent aan het toekijken"
+join_lobby_message: "Je betreedt de game"
+
+# Hosting
+hosting_automatically_cant_host: "Spel wordt automatisch gehost, Je kan het niet hosten"
+hosting_automatically_broadcast_dedicated: "PropHunt wordt automatisch gehost! De volgende arena is: {arena}"
+hosting_automatically_broadcast: "PropHunt wordt automatisch gehost! De volgende arena is: {arena}. Typ &6'/prophunt join' &a om te spelen!"
+game_already_hosted: "Spel is al gehost"
+game_cant_host: "U kunt het spel niet hosten op dit moment"
+game_host: "Je host nu PropHunt"
+host_broadcast: "PropHunt in Arena: {arena} word gehost door {host}! Typ &6'/prophunt join' &a om te spelen!"
+arena_not_ready_for_hosting: "De arena is niet klaar om gehost te worden! Graag correct instellen"
+not_enough_players: "Er moeten minimaal 2 spelers zijn om te beginnen! "
+broadcast_first_seeker: "{seeker} is de eerste zoeker!"
+player_join_lobby: " betreed de game"
+starting_in_60: "Prophunt start binnen 60 seconden! /PH Join om te spelen!"
+starting_in_60_dedi: "Prophunt start binnen 60 seconden!"
+# Einde van het spel redenen
+hiders_won_time: "GAMEOVER! Zoekers hebben het tijdslimiet gehaald!"
+hiders_won_seekers_quit: "GAMEOVER! Zoekers zijn weggegaan!"
+hiders_won_kills: "GAMEOVER! Alle Zoekers zijn gedood!"
+hiders_won: "GAMEOVER! Verstoppers hebben gewonnen!"
+seekers_won_hiders_quit: "GAMEOVER! Verstoppers zijn weggegaan!"
+seekers_won: "GAMEOVER! Zoekers hebben gewonnen!"
+host_ended: "GAMEOVER! Host heeft het spel beëindigd!"
+
+# Vermommen
+disguise_error: "Er is iets mis met je vermomming, asjeblieft rapporteer: 'null' tegen een admin"
+disguise_message: "Je bent vermomd als "
+
+# Instellen
+seeker_spawn_set: "Zoeker spawn gezet"
+hider_spawn_set: "Verstoppers spawn gezet"
+lobby_spawn_set: "Wachtruimte spawn spawn"
+spectator_spawn_set: "Kijker spawn gezet"
+exit_spawn_set: "Verlaat spawn Set"
+arena_complete: "Arena setup compleet!"
+

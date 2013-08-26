@@ -1,0 +1,65 @@
+UseLanguageFile: "English.yml"
+players-to-start: 2
+interval: 60
+lobby-time: 60
+starting-time: 300
+seeker-damage: 2
+time-reward: 30
+automatic: false
+dedicated: false
+blow-disguises-last-30-seconds: true
+seeker-delay-time: 0
+blind-seeker-in-delay: true
+seeker-lives: 1
+crouching-block-lock: true
+use-solid-block: true
+solid-block-time: 5
+using-custom-tab: true
+use-hitmarkers: true
+use-hitsounds: true
+auto-respawn: true
+use-side-scoreboard-stats: true
+AutomationSettings:
+  dispatch-commands-after-x-games: false
+  number-of-games: 10
+  commands:
+    - say PropHunt Server resetting!
+    - give tomskied 357 1
+    - {kickalltohub}
+    - stop
+ServerSettings:
+  force-motd-prophunt: false
+  block-access-whilst-in-game: false
+  force-max-players: false
+  force-max-players-size: 36
+BungeeSettings:
+  using-bungee: false
+  kick-back-to-hub: false
+  hub-name: hub
+  ping-interval-ticks: 20
+  #As is in your bungee config.yml
+  this-bungee-server-name: prophunt1
+block-disguises:
+- 1
+- 2
+- 3
+- 5
+- 6
+- 7
+- 81
+- 57
+- 71
+HiderClass:
+  Inventory: 283:1,357:20
+  Effects: 1:20000:1,8:20000:1
+  Helmet: 298 4:1
+  Chestplate: 299 0:1
+  Leggings: 300 1:2
+  Boots: 301 2:4
+SeekerClass:
+  Inventory: 261:1,262:64,391:10,366:10
+  Effects: 1:20000:1
+  Helmet: 310 0:4
+  Chestplate: 311 0:4
+  Leggings: 312 1:4
+  Boots: 313 2:1

@@ -1,0 +1,76 @@
+name: PropHunt
+main: me.tomski.PropHunt.PropHunt
+version: 1.35
+depend: [DisguiseCraft,ProtocolLib]
+softdepend: [TabAPI,PropHuntSigns]
+author: Tomski - Owner of Skicraft
+website: www.skicraft.enjin.com
+commands:
+    prophunt:
+        description: Use to manage PropHunt activities
+        aliases: [ph]
+        permission: prophunt.prophunt
+        permission-message: You dont have permission for PropHunt commands
+        usage: /ph /prophunt  for PropHunt commands!
+permissions:
+    prophunt.command.*:
+        description: Gives access to all user commands
+        children:
+            prophunt.command.join: true
+            prophunt.command.leave: true
+            prophunt.command.status: true
+            prophunt.command.spectate: true
+            prophunt.prophunt: true
+    prophunt.hostcommand.*:
+        description: Gives access to all host commands
+        children:
+            prophunt.hostcommand.host: true
+            prophunt.hostcommand.start: true
+            prophunt.hostcommand.stop: true
+            prophunt.hostcommand.kick: true
+            prophunt.prophunt: true
+    prophunt.admin.*:
+        description: Gives access to all admin commands
+        children:
+            prophunt.admin.setup: true
+            prophunt.admin.delete: true
+            prophunt.admin.configreload: true
+    prophunt.prophunt:
+        default: op
+        description: Allows use of PropHunt commands!
+    prophunt.joinoverride:
+        default: op
+        description: Allows joining of full servers!
+    prophunt.hostcommand.kick:
+        default: op
+        description: Allows use of PropHunt Kick!
+    prophunt.hostcommand.host:
+        default: op
+        description: Allows use of PropHunt Host!
+    prophunt.hostcommand.start:
+        default: op
+        description: Allows use of PropHunt start!
+    prophunt.hostcommand.stop:
+        default: op
+        description: Allows use of PropHunt stop!
+    prophunt.command.join:
+        default: op
+        description: Allows use of PropHunt join!
+    prophunt.command.leave:
+        default: op
+        description: Allows use of PropHunt leave!
+    prophunt.command.spectate:
+        default: op
+        description: Allows use of PropHunt spectate!
+    prophunt.command.status:
+        default: op
+        description: Allows use of PropHunt status!
+    prophunt.admin.setup:
+        default: op
+        description: Allows use of PropHunt delete!
+    prophunt.admin.delete:
+        default: op
+        description: Allows use of PropHunt setup!
+    prophunt.admin.configreload:
+        default: op
+        description: Allows use of PropHunt configreload!
