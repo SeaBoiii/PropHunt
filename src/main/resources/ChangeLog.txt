@@ -39,3 +39,5 @@
     - Prevent kicking when a player is ontop of a disguised block
     - Fix npe with refresh disguises
     - Fix blow disguises not responding to solid blocks
+- V 1.36
+    - Mavenize
