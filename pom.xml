@@ -10,20 +10,22 @@
     <name>PropHunt</name>
 
     <build>
-        <defaultGoal>clean package install</defaultGoal>
+        <defaultGoal>clean package</defaultGoal>
+        <directory>target</directory>
+        <outputDirectory>target/classes</outputDirectory>
         <finalName>PropHunt</finalName>
-        <sourceDirectory>${basedir}/src/main/java</sourceDirectory>
-
+        <sourceDirectory>${basedir}/src/main/</sourceDirectory>
         <resources>
             <resource>
                 <targetPath>.</targetPath>
                 <filtering>true</filtering>
-                <directory>${basedir}/src/main/resources/</directory>
+                <directory>${basedir}</directory>
                 <includes>
                     <include>*.yml</include>
                 </includes>
             </resource>
         </resources>
+
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
