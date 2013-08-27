@@ -338,7 +338,8 @@ public class GameManager {
 		
 		for(final String hider : hiders){
 			if(plugin.getServer().getPlayer(hider)!=null){
-				teleportToExit(plugin.getServer().getPlayer(hider),false);
+                plugin.showPlayer(plugin.getServer().getPlayer(hider));
+                teleportToExit(plugin.getServer().getPlayer(hider),false);
 				PlayerManagement.gameRestorePlayer(plugin.getServer().getPlayer(hider));
 				if(PropHunt.usingTABAPI){
 					SB.removeTab(plugin.getServer().getPlayer(hider));
@@ -370,6 +371,7 @@ public class GameManager {
 		
 		for(final String seeker: seekers){
 			if(plugin.getServer().getPlayer(seeker)!=null){
+                plugin.showPlayer(plugin.getServer().getPlayer(seeker));
 				teleportToExit(plugin.getServer().getPlayer(seeker),false);
 				PlayerManagement.gameRestorePlayer(plugin.getServer().getPlayer(seeker));
 				if(PropHunt.usingTABAPI){

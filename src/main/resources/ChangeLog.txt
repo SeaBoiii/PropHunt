@@ -41,3 +41,4 @@
     - Fix blow disguises not responding to solid blocks
 - V 1.36
     - Mavenize, lets get dev builds :)
+    - Add double checks for players still invis
