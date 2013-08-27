@@ -630,7 +630,7 @@ public class GameManager {
 					}else{
 						String msg = MessageBank.STARTING_IN_60.getMsg();
 						msg = LanguageManager.regex(msg, "\\{time\\}", String.valueOf(lobbyTime));
-						PropHuntMessaging.broadcastMessage(MessageBank.STARTING_IN_60.getMsg());
+						PropHuntMessaging.broadcastMessage(msg);
 					}
 					LT = new LobbyThread(plugin,lobbyTime);
 					LT.isRunning = true;
