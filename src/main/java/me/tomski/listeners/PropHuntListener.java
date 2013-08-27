@@ -153,6 +153,12 @@ public class PropHuntListener implements Listener{
 		if(e.getPlayer().hasPermission("prophunt.admin.commandoverride")){
 			return;
 		}
+        if(GameManager.playersWaiting.contains(e.getPlayer().getName())){
+            if(!allowedcmds.contains(e.getMessage().toLowerCase())){
+                PropHuntMessaging.sendMessage(e.getPlayer(), MessageBank.NO_GAME_COMMANDS.getMsg());
+                e.setCancelled(true);
+            }
+        }
 		if(GameManager.hiders.contains(e.getPlayer().getName())){
 			if(!allowedcmds.contains(e.getMessage().toLowerCase())){
 				PropHuntMessaging.sendMessage(e.getPlayer(), MessageBank.NO_GAME_COMMANDS.getMsg());
