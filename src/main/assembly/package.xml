@@ -6,8 +6,8 @@
     <files>
         <file>
             <source>${project.build.directory}/${artifactId}.jar</source>
-            <outputDirectory>/</outputDirectory>
-            <destName>chester.jar</destName>
+            <outputDirectory>/target/</outputDirectory>
+            <destName>${artifactId}.jar</destName>
         </file>
     </files>
 </assembly>

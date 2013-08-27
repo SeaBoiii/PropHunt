@@ -12,6 +12,7 @@
         <defaultGoal>clean package install</defaultGoal>
         <finalName>PropHunt</finalName>
         <sourceDirectory>${basedir}/src/main/java</sourceDirectory>
+
         <resources>
             <resource>
                 <targetPath>.</targetPath>
