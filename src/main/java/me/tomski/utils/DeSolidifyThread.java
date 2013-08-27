@@ -14,21 +14,21 @@ import me.tomski.listeners.PropHuntListener;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
-public class DeSolidifyThread implements Runnable{
-    
+public class DeSolidifyThread implements Runnable {
+
     private PropHunt plugin;
     List<String> removeList = new ArrayList<String>();
     List<Player> playerRemoveList = new ArrayList<Player>();
 
 
-    public DeSolidifyThread(PropHunt plugin){
+    public DeSolidifyThread(PropHunt plugin) {
         this.plugin = plugin;
     }
 
     @Override
     public void run() {
-        for(Entry<String, SolidBlock> sb : SolidBlockTracker.solidBlocks.entrySet()){
-            if(sb.getValue().hasMoved(plugin)  || GameManager.seekers.contains(SolidBlockTracker.solidBlocks.get(sb.getKey()).owner.getName())){
+        for (Entry<String, SolidBlock> sb : SolidBlockTracker.solidBlocks.entrySet()) {
+            if (sb.getValue().hasMoved(plugin) || GameManager.seekers.contains(SolidBlockTracker.solidBlocks.get(sb.getKey()).owner.getName())) {
                 try {
                     PropHuntMessaging.sendMessage(sb.getValue().owner, MessageBank.BROKEN_SOLID_BLOCK.getMsg());
                     sb.getValue().unSetBlock(plugin);
@@ -42,17 +42,17 @@ public class DeSolidifyThread implements Runnable{
 
             }
         }
-        for(String s : removeList){
+        for (String s : removeList) {
             SolidBlockTracker.solidBlocks.remove(s);
         }
         removeList.clear();
-        for(Player  p : PropHuntListener.playerOnBlocks.keySet()){
-            PropHuntListener.playerOnBlocks.put(p, PropHuntListener.playerOnBlocks.get(p) -1);
-            if(PropHuntListener.playerOnBlocks.get(p) <= 0) {
+        for (Player p : PropHuntListener.playerOnBlocks.keySet()) {
+            PropHuntListener.playerOnBlocks.put(p, PropHuntListener.playerOnBlocks.get(p) - 1);
+            if (PropHuntListener.playerOnBlocks.get(p) <= 0) {
                 playerRemoveList.add(p);
             }
         }
-        for(Player s : playerRemoveList){
+        for (Player s : playerRemoveList) {
             PropHuntListener.playerOnBlocks.remove(s);
         }
         playerRemoveList.clear();

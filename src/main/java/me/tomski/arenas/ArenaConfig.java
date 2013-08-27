@@ -7,50 +7,50 @@ import me.tomski.classes.HiderClass;
 import me.tomski.classes.SeekerClass;
 
 public class ArenaConfig {
-	
-	Map<Integer,String> arenaDisguises = new HashMap<Integer,String>();
-	HiderClass arenaHiderClass;
-	SeekerClass arenaSeekerClass;
-	boolean usingDefault;
-	
-	public ArenaConfig(Map<Integer, String> dis, HiderClass hC, SeekerClass sC, boolean def){
-		this.arenaDisguises = dis;
-		this.arenaHiderClass = hC;
-		this.arenaSeekerClass = sC;
-		this.usingDefault = def;
-	}
 
-	public Map<Integer, String> getArenaDisguises() {
-		return arenaDisguises;
-	}
+    Map<Integer, String> arenaDisguises = new HashMap<Integer, String>();
+    HiderClass arenaHiderClass;
+    SeekerClass arenaSeekerClass;
+    boolean usingDefault;
 
-	public void setArenaDisguises(Map<Integer, String> arenaDisguises) {
-		this.arenaDisguises = arenaDisguises;
-	}
+    public ArenaConfig(Map<Integer, String> dis, HiderClass hC, SeekerClass sC, boolean def) {
+        this.arenaDisguises = dis;
+        this.arenaHiderClass = hC;
+        this.arenaSeekerClass = sC;
+        this.usingDefault = def;
+    }
 
-	public HiderClass getArenaHiderClass() {
-		return arenaHiderClass;
-	}
+    public Map<Integer, String> getArenaDisguises() {
+        return arenaDisguises;
+    }
 
-	public void setArenaHiderClass(HiderClass arenaHiderClass) {
-		this.arenaHiderClass = arenaHiderClass;
-	}
+    public void setArenaDisguises(Map<Integer, String> arenaDisguises) {
+        this.arenaDisguises = arenaDisguises;
+    }
 
-	public SeekerClass getArenaSeekerClass() {
-		return arenaSeekerClass;
-	}
+    public HiderClass getArenaHiderClass() {
+        return arenaHiderClass;
+    }
 
-	public void setArenaSeekerClass(SeekerClass arenaSeekerClass) {
-		this.arenaSeekerClass = arenaSeekerClass;
-	}
+    public void setArenaHiderClass(HiderClass arenaHiderClass) {
+        this.arenaHiderClass = arenaHiderClass;
+    }
 
-	public boolean isUsingDefault() {
-		return usingDefault;
-	}
+    public SeekerClass getArenaSeekerClass() {
+        return arenaSeekerClass;
+    }
 
-	public void setUsingDefault(boolean usingDefault) {
-		this.usingDefault = usingDefault;
-	}
-	
+    public void setArenaSeekerClass(SeekerClass arenaSeekerClass) {
+        this.arenaSeekerClass = arenaSeekerClass;
+    }
+
+    public boolean isUsingDefault() {
+        return usingDefault;
+    }
+
+    public void setUsingDefault(boolean usingDefault) {
+        this.usingDefault = usingDefault;
+    }
+
 
 }
