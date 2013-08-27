@@ -27,6 +27,9 @@ public class LobbyThread implements Runnable{
 		GameManager.currentLobbyTime = time;
 		if(time<=0){
 			GameManager.currentLobbyTime = 0;
+            if (GameManager.gameStatus) {
+                return;
+            }
 			if(GameManager.playersToStartGame <= GameManager.playersWaiting.size()){
 				plugin.GM.startGame(null);
 				isRunning=false;
