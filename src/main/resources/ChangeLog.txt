@@ -47,3 +47,4 @@
     - Stop lobby commands
     - Change to list with arena rotator
     - fix kick all to hub
+    - Force automatic if dedicated

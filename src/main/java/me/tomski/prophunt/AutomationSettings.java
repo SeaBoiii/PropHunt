@@ -21,7 +21,7 @@ public class AutomationSettings {
 
     }
 
-    public static boolean runChecks(PropHunt plugin) {
+    public static boolean runChecks(final PropHunt plugin) {
         if (dispatchCommands) {
             gamesPlayed++;
             if (gamesPlayed == gamesTillReset) {
@@ -35,6 +35,14 @@ public class AutomationSettings {
                                 e.printStackTrace();
                             }
                         }
+                    } else if (command.equalsIgnoreCase("stop")) {
+                        plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable(){
+                            @Override
+                            public void run() {
+                                plugin.getServer().shutdown();
+                            }
+                        }, 100L);
+                        return true;
                     } else {
                         plugin.getServer().dispatchCommand(plugin.getServer().getConsoleSender(), command);
                     }
