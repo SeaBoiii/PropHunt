@@ -40,4 +40,4 @@
     - Fix npe with refresh disguises
     - Fix blow disguises not responding to solid blocks
 - V 1.36
-    - Mavenize
+    - Mavenize, lets get dev builds :)
