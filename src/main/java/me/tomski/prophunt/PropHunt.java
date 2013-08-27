@@ -197,6 +197,9 @@ public class PropHunt extends JavaPlugin {
             if (GameManager.automatic) {
                 if (getConfig().contains("dedicated")) {
                     GameManager.dedicated = getConfig().getBoolean("dedicated");
+                    if (GameManager.dedicated) {
+                        GameManager.automatic = true;
+                    }
                 }
             }
         }

@@ -452,7 +452,6 @@ public class GameManager {
         if (usingSolidBlock) {
             plugin.getServer().getScheduler().cancelTask(TRACKERID);
             plugin.getServer().getScheduler().cancelTask(DETRACKERID);
-
         }
 
 
