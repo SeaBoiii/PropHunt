@@ -372,7 +372,7 @@ public class GameManager {
 		for(final String seeker: seekers){
 			if(plugin.getServer().getPlayer(seeker)!=null){
                 plugin.showPlayer(plugin.getServer().getPlayer(seeker));
-				teleportToExit(plugin.getServer().getPlayer(seeker),false);
+				teleportToExit(plugin.getServer().getPlayer(seeker), false);
 				PlayerManagement.gameRestorePlayer(plugin.getServer().getPlayer(seeker));
 				if(PropHunt.usingTABAPI){
 					SB.removeTab(plugin.getServer().getPlayer(seeker));
@@ -567,6 +567,10 @@ public class GameManager {
 	}
 	
 	public void addPlayerToGameDedi(String name){
+        if (!safeToJoin(name)) {
+            PropHuntMessaging.sendMessage(plugin.getServer().getPlayer(name), "You are not safe to teleport");
+            return;
+        }
 		if(gameStatus){
 			plugin.SBS.addPlayerToLobby(plugin,plugin.getServer().getPlayer(name));
 		}else{
@@ -602,8 +606,13 @@ public class GameManager {
 			}
 		}
 	}
-	
-	public void addPlayerToGame(String name){
+
+    private boolean safeToJoin(String name) {
+        Player p = plugin.getServer().getPlayer(name);
+        return !p.isInsideVehicle();
+    }
+
+    public void addPlayerToGame(String name){
 		if(gameStatus){
 			plugin.SBS.addPlayerToLobby(plugin,plugin.getServer().getPlayer(name));
 		}else{
