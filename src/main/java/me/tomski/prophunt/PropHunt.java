@@ -103,7 +103,6 @@ public class PropHunt extends JavaPlugin {
         LM = new LanguageManager(this);
 
         AS.loadData();
-        AM.resetCounterAndArray();
         if (GameManager.useSideStats) {
             SBS = new SideBarStats();
 
@@ -140,17 +139,17 @@ public class PropHunt extends JavaPlugin {
             getLogger().log(Level.WARNING, "Arena Not Setup, automatic hosting disabled");
             return false;
         }
-        if (ArenaManager.arenasInRotation.length == 0) {
+        if (ArenaManager.arenasInRotation.size() == 0) {
             GameManager.automatic = false;
             getLogger().log(Level.WARNING, "No arena setup, automatic hosting disabled");
             return false;
         }
-        if (!GM.checkReady(ArenaManager.arenasInRotation[0])) {
+        if (!GM.checkReady(ArenaManager.arenasInRotation.get(0))) {
             GameManager.automatic = false;
             getLogger().log(Level.WARNING, "Arena Not Setup, automatic hosting disabled");
             return false;
         } else {
-            GM.hostGame(null, ArenaManager.arenasInRotation[0]);
+            GM.hostGame(null, ArenaManager.arenasInRotation.get(0));
             return true;
         }
     }

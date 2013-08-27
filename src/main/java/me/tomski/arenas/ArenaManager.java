@@ -1,8 +1,6 @@
 package me.tomski.arenas;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import me.tomski.prophunt.PropHunt;
 
@@ -29,7 +27,7 @@ public class ArenaManager {
     public static Arena currentArena = null;
 
     public static Map<String, Arena> playableArenas = new HashMap<String, Arena>();
-    public static Arena[] arenasInRotation = new Arena[playableArenas.size()];
+    public static List<Arena> arenasInRotation = new ArrayList<Arena>();
     public static int rotationCounter = 0;
 
     public void addSettingUp(Player sender, String name) {
@@ -100,7 +98,7 @@ public class ArenaManager {
             System.out.print(a);
             if (a.equalsIgnoreCase(string)) {
                 remove = a;
-                resetCounterAndArray();
+                arenasInRotation.remove(playableArenas.get(remove));
                 plugin.AS.getStorageFile().set("Arenas." + a, null);
                 plugin.AS.saveStorageFile();
                 plugin.getConfig().set("CustomArenaConfigs." + a, null);
@@ -118,25 +116,13 @@ public class ArenaManager {
         return false;
     }
 
-
-    public void resetCounterAndArray() {
-        arenasInRotation = new Arena[playableArenas.size()];
-        int count = 0;
-        for (Arena a : playableArenas.values()) {
-            arenasInRotation[count] = a;
-            count++;
-        }
-        rotationCounter = arenasInRotation.length - 1;
-    }
-
-
     public static Arena getNextInRotation() {
         rotationCounter++;
-        if (rotationCounter >= arenasInRotation.length) {
+        if (rotationCounter >= arenasInRotation.size()) {
             rotationCounter = 0;
-            return arenasInRotation[rotationCounter];
+            return arenasInRotation.get(rotationCounter);
         } else {
-            return arenasInRotation[rotationCounter];
+            return arenasInRotation.get(rotationCounter);
         }
     }
 
