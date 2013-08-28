@@ -6,6 +6,8 @@ import java.io.InputStream;
 import java.util.logging.Level;
 
 import me.tomski.arenas.Arena;
+import me.tomski.objects.ArenaFileStructureWrapper;
+import me.tomski.objects.LocationBox;
 import me.tomski.prophunt.DisguiseManager;
 import me.tomski.prophunt.GameManager;
 import me.tomski.prophunt.PropHunt;
@@ -39,15 +41,28 @@ public class ArenaStorage {
         }
         for (String key : getStorageFile().getConfigurationSection("Arenas").getKeys(false)) {
             String path = "Arenas." + key + ".";
-            World world = plugin.getServer().getWorld(getStorageFile().getString(path + "worldname"));
-            Location lobby = getStorageFile().getVector(path + "lobbyVec").toLocation(world);
-            Location exit = getStorageFile().getVector(path + "exitVec").toLocation(world);
-            Location seeker = getStorageFile().getVector(path + "seekerVec").toLocation(world);
-            Location hider = getStorageFile().getVector(path + "hiderVec").toLocation(world);
-            Location spec = getStorageFile().getVector(path + "spectatorVec").toLocation(world);
-            Arena a = new Arena(key, lobby, exit, seeker, hider, spec);
-            ArenaManager.playableArenas.put(key, a);
-            plugin.getLogger().log(Level.INFO, key + " arena loaded");
+            Arena a;
+            if (ArenaFileStructureWrapper.usingOldFormat(getStorageFile(), key)) {
+                World world = plugin.getServer().getWorld(getStorageFile().getString(path + "worldname"));
+                Location lobby = getStorageFile().getVector(path + "lobbyVec").toLocation(world);
+                Location exit = getStorageFile().getVector(path + "exitVec").toLocation(world);
+                Location seeker = getStorageFile().getVector(path + "seekerVec").toLocation(world);
+                Location hider = getStorageFile().getVector(path + "hiderVec").toLocation(world);
+                Location spec = getStorageFile().getVector(path + "spectatorVec").toLocation(world);
+                a = new Arena(key, lobby, exit, seeker, hider, spec);
+                ArenaManager.playableArenas.put(key, a);
+                ArenaFileStructureWrapper.translateToNewStorageFormat(plugin, getStorageFile(), a);
+                plugin.getLogger().log(Level.INFO, key + " arena loaded and translated to the new file format");
+            } else {
+                Location lobby = new LocationBox(getStorageFile().getString(path + "lobbySpawn")).unBox();
+                Location seeker = new LocationBox(getStorageFile().getString(path + "seekerSpawn")).unBox();
+                Location exit = new LocationBox(getStorageFile().getString(path + "exitSpawn")).unBox();
+                Location hider = new LocationBox(getStorageFile().getString(path + "hiderSpawn")).unBox();
+                Location spec = new LocationBox(getStorageFile().getString(path + "spectatorSpawn")).unBox();
+                a = new Arena(key, lobby, exit, seeker, hider, spec);
+                ArenaManager.playableArenas.put(key, a);
+                plugin.getLogger().log(Level.INFO, key + " arena loaded");
+            }
             if (!plugin.getConfig().contains("CustomArenaConfigs." + key)) {
                 a.saveArenaToFile(plugin);
             }

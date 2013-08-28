@@ -1,5 +1,6 @@
 package me.tomski.arenas;
 
+import me.tomski.objects.LocationBox;
 import me.tomski.prophunt.PropHunt;
 
 import org.bukkit.Location;
@@ -68,12 +69,12 @@ public class Arena {
 
 
     public void saveArenaToFile(PropHunt plugin) {
-        plugin.AS.getStorageFile().set("Arenas." + arenaName + ".worldname", lobbySpawn.getWorld().getName());
-        plugin.AS.getStorageFile().set("Arenas." + arenaName + ".lobbyVec", lobbySpawn.toVector());
-        plugin.AS.getStorageFile().set("Arenas." + arenaName + ".seekerVec", seekerSpawn.toVector());
-        plugin.AS.getStorageFile().set("Arenas." + arenaName + ".hiderVec", hiderSpawn.toVector());
-        plugin.AS.getStorageFile().set("Arenas." + arenaName + ".spectatorVec", spectatorSpawn.toVector());
-        plugin.AS.getStorageFile().set("Arenas." + arenaName + ".exitVec", exitSpawn.toVector());
+        plugin.AS.getStorageFile().set("Arenas." + arenaName + ".lobbySpawn", new LocationBox(getLobbySpawn()).box());
+        plugin.AS.getStorageFile().set("Arenas." + arenaName + ".seekerSpawn", new LocationBox(getSeekerSpawn()).box());
+        plugin.AS.getStorageFile().set("Arenas." + arenaName + ".hiderSpawn", new LocationBox(getHiderSpawn()).box());
+        plugin.AS.getStorageFile().set("Arenas." + arenaName + ".exitSpawn", new LocationBox(getExitSpawn()).box());
+        plugin.AS.getStorageFile().set("Arenas." + arenaName + ".spectatorSpawn", new LocationBox(getSpectatorSpawn()).box());
+        plugin.AS.saveStorageFile();
         plugin.AS.saveStorageFile();
         if (!plugin.getConfig().contains("CustomArenaConfigs." + arenaName + ".usingDefault")) {
             plugin.getConfig().set("CustomArenaConfigs." + arenaName + ".usingDefault", true);
