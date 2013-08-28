@@ -10,7 +10,7 @@ import me.tomski.language.MessageBank;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 
 public class SetupListener implements Listener {
 
@@ -23,39 +23,42 @@ public class SetupListener implements Listener {
 
 
     @EventHandler
-    public void onBlockPlace(BlockPlaceEvent e) {
+    public void onBlockPlace(PlayerInteractEvent e) {
         if (ArenaManager.setupMap.containsKey(e.getPlayer().getName())) {
-            if (e.getBlock().getTypeId() == 35) {
-                if (e.getBlock().getData() == 1) {
-                    ArenaManager.currentArena.setHiderSpawn(e.getBlock().getLocation());
+            if (e.getItem()== null) {
+                return;
+            }
+            if (e.getItem().getTypeId() == 35) {
+                if (e.getItem().getData().getData() == 1) {
+                    ArenaManager.currentArena.setHiderSpawn(e.getPlayer().getLocation());
                     PropHuntMessaging.sendMessage(e.getPlayer(), MessageBank.HIDER_SPAWN_SET.getMsg());
                     ifCompleteFinish(e);
                     e.setCancelled(true);
                     return;
                 }
-                if (e.getBlock().getData() == 2) {
-                    ArenaManager.currentArena.setSeekerSpawn(e.getBlock().getLocation());
+                if (e.getItem().getData().getData() == 2) {
+                    ArenaManager.currentArena.setSeekerSpawn(e.getPlayer().getLocation());
                     PropHuntMessaging.sendMessage(e.getPlayer(), MessageBank.SEEKER_SPAWN_SET.getMsg());
                     ifCompleteFinish(e);
                     e.setCancelled(true);
                     return;
                 }
-                if (e.getBlock().getData() == 3) {
-                    ArenaManager.currentArena.setLobbySpawn(e.getBlock().getLocation());
+                if (e.getItem().getData().getData() == 3) {
+                    ArenaManager.currentArena.setLobbySpawn(e.getPlayer().getLocation());
                     PropHuntMessaging.sendMessage(e.getPlayer(), MessageBank.LOBBY_SPAWN_SET.getMsg());
                     ifCompleteFinish(e);
                     e.setCancelled(true);
                     return;
                 }
-                if (e.getBlock().getData() == 4) {
-                    ArenaManager.currentArena.setSpectatorSpawn(e.getBlock().getLocation());
+                if (e.getItem().getData().getData() == 4) {
+                    ArenaManager.currentArena.setSpectatorSpawn(e.getPlayer().getLocation());
                     PropHuntMessaging.sendMessage(e.getPlayer(), MessageBank.SPECTATOR_SPAWN_SET.getMsg());
                     ifCompleteFinish(e);
                     e.setCancelled(true);
                     return;
                 }
-                if (e.getBlock().getData() == 5) {
-                    ArenaManager.currentArena.setExitSpawn(e.getBlock().getLocation());
+                if (e.getItem().getData().getData() == 5) {
+                    ArenaManager.currentArena.setExitSpawn(e.getPlayer().getLocation());
                     PropHuntMessaging.sendMessage(e.getPlayer(), MessageBank.EXIT_SPAWN_SET.getMsg());
                     ifCompleteFinish(e);
                     e.setCancelled(true);
@@ -66,7 +69,7 @@ public class SetupListener implements Listener {
     }
 
 
-    private void ifCompleteFinish(BlockPlaceEvent e) {
+    private void ifCompleteFinish(PlayerInteractEvent e) {
         if (plugin.AM.checkComplete()) {
             ArenaManager.currentArena.saveArenaToFile(plugin);
             PropHuntMessaging.sendMessage(e.getPlayer(), MessageBank.ARENA_COMPLETE.getMsg());
