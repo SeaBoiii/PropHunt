@@ -1,5 +1,5 @@
 name: PropHunt
-main: me.tomski.propjunt.PropHunt
+main: me.tomski.prophunt.PropHunt
 version: 1.36
 depend: [DisguiseCraft,ProtocolLib]
 softdepend: [TabAPI,PropHuntSigns]
