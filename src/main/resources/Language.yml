@@ -60,6 +60,9 @@ host_ended: "GAMEOVER! Host has ended the match!"
 disguise_error: "There is something wrong with your disguise, please report: 'null' to an admin"
 disguise_message: "You have been disguised as a "
 
+shop_chosen_disguise: "You have chosen your disguise: "
+no_block_choice_permission: "You dont have permission for that disguise"
+
 # setup
 seeker_spawn_set: "Seeker spawn Set"
 hider_spawn_set: "Hider spawn Set"

@@ -16,6 +16,7 @@ import me.tomski.listeners.SetupListener;
 import me.tomski.blocks.ProtocolTask;
 import me.tomski.classes.SeekerClass;
 import me.tomski.listeners.PropHuntListener;
+import me.tomski.shop.BlockChooser;
 import me.tomski.utils.LogFilter;
 import me.tomski.utils.MetricsLite;
 import me.tomski.utils.PingTimer;
@@ -55,6 +56,7 @@ public class PropHunt extends JavaPlugin {
     private LanguageManager LM;
     public SideBarStats SBS;
     public static boolean usingTABAPI = false;
+    public BlockChooser blockChooser;
 
 
     public void onEnable() {
@@ -114,6 +116,8 @@ public class PropHunt extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PropHuntListener(this, GM), this);
         getServer().getPluginManager().registerEvents(new SetupListener(this), this);
         getServer().getPluginManager().registerEvents(new ServerManager(this), this);
+        blockChooser = new BlockChooser(this);
+        getServer().getPluginManager().registerEvents(blockChooser, this);
 
         usingCustomTab();
 
@@ -262,6 +266,11 @@ public class PropHunt extends JavaPlugin {
         if (getConfig().contains("choose-new-seeker-if-original-dies")) {
             GameManager.chooseNewSeeker = getConfig().getBoolean("choose-new-seeker-if-original-dies");
         }
+        if (getConfig().contains("ShopSettings")) {
+            ShopSettings.currencyName = getConfig().getString("ShopSettings.currency-name");
+            ShopSettings.blockChoices = ShopSettings.generateBlockChoices(getConfig().getStringList("ShopSettings.block-choices"));
+            ShopSettings.cleanStacks();
+        }
         if (getConfig().contains("ServerSettings")) {
             ServerManager.forceMOTD = getConfig().getBoolean("ServerSettings.force-motd-prophunt");
             ServerManager.forceMaxPlayers = getConfig().getBoolean("ServerSettings.force-max-players");
@@ -383,6 +392,15 @@ public class PropHunt extends JavaPlugin {
                         }
                         PropHuntMessaging.sendGameStatus(p);
                         return true;
+                    }
+                    if( args[0].equalsIgnoreCase("chooser")) {
+                        if (!sender.hasPermission("prophunt.command.chooser")) {
+                            PropHuntMessaging.sendMessage(p, "You do not have the permission to use this chooser");
+                            return true;
+                        }
+                        if (GameManager.isHosting && GameManager.playersWaiting.contains(p.getName())) {
+                            blockChooser.openBlockShop(p);
+                        }
                     }
                     if (args[0].equalsIgnoreCase("debug") && sender.isOp()) {
                         sender.sendMessage("Debug for Tomski");

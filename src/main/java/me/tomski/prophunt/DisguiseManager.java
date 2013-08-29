@@ -21,6 +21,7 @@ public class DisguiseManager {
 
     private static PropHunt plugin;
     public static Map<Integer, String> blockDisguises = new HashMap<Integer, String>();
+    public static Map<Player, Disguise> preChosenDisguise = new HashMap<Player, Disguise>();
 
 
     public DisguiseManager(PropHunt plugin) {
@@ -32,6 +33,19 @@ public class DisguiseManager {
 
     public static void randomDisguise(Player p, ArenaConfig ac) {
         int i = PropHunt.dc.newEntityID();
+
+        if (preChosenDisguise.containsKey(p)) {
+            Disguise ds = preChosenDisguise.get(p);
+            ds.setEntityID(PropHunt.dc.newEntityID());
+            if (PropHunt.dc.isDisguised(p)) {
+                PropHunt.dc.changePlayerDisguise(p, ds);
+                PropHuntMessaging.sendMessage(p, MessageBank.DISGUISE_MESSAGE.getMsg() + parseDisguiseToName(ds));
+            } else {
+                PropHunt.dc.disguisePlayer(p, ds);
+                PropHuntMessaging.sendMessage(p, MessageBank.DISGUISE_MESSAGE.getMsg() + parseDisguiseToName(ds));
+            }
+            return;
+        }
         String id = getRandomBlockID(ac.getArenaDisguises());
 
         String type = getDisguiseType(id);
@@ -51,7 +65,6 @@ public class DisguiseManager {
                 data.add("blockID:" + id.split(":")[0]);
                 data.add("blockData:" + id.split(":")[1]);
                 ds = new Disguise(i, data, DisguiseType.FallingBlock);
-
                 found = true;
                 break;
             }

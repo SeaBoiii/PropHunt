@@ -53,3 +53,6 @@
     - Added support for pitch and yaw in the different spawns
 - V 1.37
     - adds choose-new-seeker-if-original-dies to the config. Stops first seeker ruining by quitting/suiciding
+    - Add shop settings, shop currency name, block choices
+    - Command ./ph chooser     permission node prophunt.command.chooser. Opens up the block chooser
+    - Block chooser is permission based. They must have the permission prophunt.blockchooser.<blockid>  or prophunt.blockchooser.<blockid>-<blockDamage> to choose one!

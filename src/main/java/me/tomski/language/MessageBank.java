@@ -53,6 +53,9 @@ public enum MessageBank {
     DISGUISE_ERROR(getCfgMsg("disguise_error")),
     DISGUISE_MESSAGE(getCfgMsg("disguise_message")),
 
+    SHOP_CHOSEN_DISGUISE(getCfgMsg("shop_chosen_disguise")),
+    NO_BLOCK_CHOICE_PERMISSION(getCfgMsg("no_block_choice_permission")),
+
     SEEKER_SPAWN_SET(getCfgMsg("seeker_spawn_set")),
     HIDER_SPAWN_SET(getCfgMsg("hider_spawn_set")),
     LOBBY_SPAWN_SET(getCfgMsg("lobby_spawn_set")),
