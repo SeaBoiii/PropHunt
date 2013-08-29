@@ -269,7 +269,7 @@ public class PropHunt extends JavaPlugin {
         if (getConfig().contains("ShopSettings")) {
             ShopSettings.currencyName = getConfig().getString("ShopSettings.currency-name");
             ShopSettings.blockChoices = ShopSettings.generateBlockChoices(getConfig().getStringList("ShopSettings.block-choices"));
-            ShopSettings.cleanStacks();
+            ShopSettings.blockChoices = ShopSettings.cleanStacks();
         }
         if (getConfig().contains("ServerSettings")) {
             ServerManager.forceMOTD = getConfig().getBoolean("ServerSettings.force-motd-prophunt");

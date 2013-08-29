@@ -26,7 +26,8 @@ public class ShopSettings {
         return stacks;
     }
 
-    public static void cleanStacks() {
+    public static List<ItemStack> cleanStacks() {
+        List<ItemStack> newStacks = new ArrayList<ItemStack>();
         for (ItemStack s : blockChoices) {
             ItemMeta im = s.getItemMeta();
             String name = s.getType().toString().toLowerCase().replaceAll("_", " ");
@@ -36,6 +37,9 @@ public class ShopSettings {
             lore.add(ChatColor.GOLD + "Click to choose the " + ChatColor.RESET + im.getDisplayName() + ChatColor.RESET + ChatColor.GOLD + " disguise!");
             im.setLore(lore);
             s.setItemMeta(im);
+            newStacks.add(s);
+            System.out.println(s.getItemMeta().getDisplayName());
         }
+        return newStacks;
     }
 }
