@@ -1,7 +1,6 @@
 package me.tomski.shop;
 
 
-import javafx.scene.paint.Color;
 import me.tomski.language.MessageBank;
 import me.tomski.prophunt.DisguiseManager;
 import me.tomski.prophunt.PropHunt;
