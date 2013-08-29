@@ -259,6 +259,9 @@ public class PropHunt extends JavaPlugin {
         if (getConfig().contains("use-side-scoreboard-stats")) {
             GameManager.useSideStats = getConfig().getBoolean("use-side-scoreboard-stats");
         }
+        if (getConfig().contains("choose-new-seeker-if-original-dies")) {
+            GameManager.chooseNewSeeker = getConfig().getBoolean("choose-new-seeker-if-original-dies");
+        }
         if (getConfig().contains("ServerSettings")) {
             ServerManager.forceMOTD = getConfig().getBoolean("ServerSettings.force-motd-prophunt");
             ServerManager.forceMaxPlayers = getConfig().getBoolean("ServerSettings.force-max-players");

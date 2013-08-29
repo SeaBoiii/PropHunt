@@ -3,10 +3,7 @@ package me.tomski.listeners;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import me.tomski.prophunt.BungeeSettings;
 import me.tomski.prophunt.GameManager;
@@ -21,6 +18,7 @@ import me.tomski.utils.PropHuntMessaging;
 import me.tomski.utils.Reason;
 import me.tomski.utils.SolidBlockTracker;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.Sound;
@@ -286,6 +284,13 @@ public class PropHuntListener implements Listener {
         } else if (GameManager.seekers.contains(e.getEntity().getName())) {
             e.getDrops().clear();
             if (isLastSeeker()) {
+                if (GameManager.chooseNewSeeker && GameManager.firstSeeker.equalsIgnoreCase(e.getEntity().getName())) {
+                    GameManager.playersQuit.add(e.getEntity().getName());
+                    GameManager.seekers.remove(e.getEntity().getName());
+                    respawnQuick(e.getEntity());
+                    this.GM.chooseNewSeekerMeth(GameManager.hiders);
+                    return;
+                }
                 if (noLivesLeft(e.getEntity())) {
                     GameManager.playersQuit.add(e.getEntity().getName());
                     GameManager.seekers.remove(e.getEntity().getName());

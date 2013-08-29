@@ -51,3 +51,5 @@
     - New arena storage
     - Multiworld support for different spawns
     - Added support for pitch and yaw in the different spawns
+- V 1.37
+    - adds choose-new-seeker-if-original-dies to the config. Stops first seeker ruining by quitting/suiciding

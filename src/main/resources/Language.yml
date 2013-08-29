@@ -15,6 +15,7 @@ seeker_delay: "Hiders have a head start! Get ready!"
 seeker_delay_end: "You are free to hunt the hiders!"
 solid_block: "You have become a solid block! Don't Move!"
 broken_solid_block: "You have broken your solid block due to moving"
+new_seeker_chosen: "A new seeker has been chosen: "
 
 hider_death_message: " has died and become a seeker"
 seeker_death_message: "A Seeker has been killed!"

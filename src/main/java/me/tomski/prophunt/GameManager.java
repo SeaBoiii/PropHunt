@@ -27,6 +27,7 @@ import me.tomski.utils.SeekerDelay;
 import me.tomski.utils.SideBarStats;
 import me.tomski.utils.SolidBlockTracker;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
@@ -62,6 +63,7 @@ public class GameManager {
     public static int timeleft;
     public static int time_reward;
     public static int TIMERID;
+    public static boolean chooseNewSeeker;
 
     private int TRACKERID;
 
@@ -564,7 +566,11 @@ public class GameManager {
             seekers.remove(name);
         }
         if (seekers.size() == 0) {
-            endGame(Reason.SEEKERQUIT, false);
+            if (GameManager.firstSeeker.equalsIgnoreCase(name)) {
+                plugin.GM.chooseNewSeekerMeth(hiders);
+            } else {
+                endGame(Reason.SEEKERQUIT, false);
+            }
             return;
         }
         if (hiders.size() == 0) {
@@ -573,6 +579,16 @@ public class GameManager {
         }
 
         checkEnd();
+    }
+
+    public void chooseNewSeekerMeth(List<String> hiders) {
+        Random rand = new Random();
+        String newSeeker = hiders.get(rand.nextInt(hiders.size()));
+        if (Bukkit.getPlayer(newSeeker) != null) {
+            Player newSeekerPlayer = Bukkit.getPlayer(newSeeker);
+            newSeekerPlayer.setHealth(0);
+            PropHuntMessaging.broadcastMessageToPlayers(GameManager.hiders, GameManager.seekers, MessageBank.NEW_SEEKER_CHOSEN.getMsg() + newSeeker);
+        }
     }
 
     public void addPlayerToGameDedi(String name) {

@@ -19,6 +19,7 @@ use-hitmarkers: true
 use-hitsounds: true
 auto-respawn: true
 use-side-scoreboard-stats: true
+choose-new-seeker-if-original-dies: true
 AutomationSettings:
   dispatch-commands-after-x-games: false
   number-of-games: 10
@@ -39,6 +40,12 @@ BungeeSettings:
   ping-interval-ticks: 20
   #As is in your bungee config.yml
   this-bungee-server-name: prophunt1
+ShopSettings:
+  currency-name: "Cookies"
+  block-choices:
+  - 2
+  - 4
+  - "34:4"
 block-disguises:
 - 1
 - 2

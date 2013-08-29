@@ -59,7 +59,8 @@ public enum MessageBank {
     SPECTATOR_SPAWN_SET(getCfgMsg("spectator_spawn_set")),
     EXIT_SPAWN_SET(getCfgMsg("exit_spawn_set")),
     ARENA_COMPLETE(getCfgMsg("arena_complete")),
-    BLOCK_ACCESS_IN_GAME(getCfgMsg("block_access_in_game")),;
+    BLOCK_ACCESS_IN_GAME(getCfgMsg("block_access_in_game")),
+    NEW_SEEKER_CHOSEN(getCfgMsg("new_seeker_chosen"));
 
 
     private String msg;
