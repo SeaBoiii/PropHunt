@@ -48,3 +48,6 @@
     - Change to list with arena rotator
     - fix kick all to hub
     - Force automatic if dedicated
+    - New arena storage
+    - Multiworld support for different spawns
+    - Added support for pitch and yaw in the different spawns
