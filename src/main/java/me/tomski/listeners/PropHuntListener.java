@@ -200,6 +200,9 @@ public class PropHuntListener implements Listener {
                     if (PropHunt.usingTABAPI) {
                         GameManager.SB.removeTab(e.getPlayer());
                     }
+                    if (GameManager.useSideStats) {
+                        PH.SBS.removeScoreboard(PH, e.getPlayer());
+                    }
 
                 }
             }, 20L);
