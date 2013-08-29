@@ -74,6 +74,7 @@ public class SetupListener implements Listener {
             ArenaManager.currentArena.saveArenaToFile(plugin);
             PropHuntMessaging.sendMessage(e.getPlayer(), MessageBank.ARENA_COMPLETE.getMsg());
             ArenaManager.playableArenas.put(ArenaManager.currentArena.getArenaName(), ArenaManager.currentArena);
+            ArenaManager.arenasInRotation.add(ArenaManager.currentArena);
             ArenaConfig AC = new ArenaConfig(DisguiseManager.blockDisguises, GameManager.hiderCLASS, GameManager.seekerCLASS, true);
             ArenaManager.arenaConfigs.put(ArenaManager.currentArena, AC);
             ArenaManager.currentArena = null;

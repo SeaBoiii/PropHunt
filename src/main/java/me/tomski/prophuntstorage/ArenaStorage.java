@@ -66,6 +66,9 @@ public class ArenaStorage {
             if (!plugin.getConfig().contains("CustomArenaConfigs." + key)) {
                 a.saveArenaToFile(plugin);
             }
+            for (Arena ar : ArenaManager.playableArenas.values()) {
+                ArenaManager.arenasInRotation.add(ar);
+            }
             loadCustomSettings(a);
         }
     }
