@@ -563,20 +563,22 @@ public class GameManager {
         if (seekers.contains(name)) {
             seekers.remove(name);
         }
-        if (seekers.size() == 0) {
-            if (GameManager.firstSeeker.equalsIgnoreCase(name)) {
-                plugin.GM.chooseNewSeekerMeth(hiders);
-            } else {
-                endGame(Reason.SEEKERQUIT, false);
+        if (GameManager.gameStatus) {
+            if (seekers.size() == 0) {
+                if (GameManager.firstSeeker.equalsIgnoreCase(name)) {
+                    plugin.GM.chooseNewSeekerMeth(hiders);
+                } else {
+                    endGame(Reason.SEEKERQUIT, false);
+                }
+                return;
             }
-            return;
-        }
-        if (hiders.size() == 0) {
-            endGame(Reason.HIDERSQUIT, false);
-            return;
-        }
+            if (hiders.size() == 0) {
+                endGame(Reason.HIDERSQUIT, false);
+                return;
+            }
 
-        checkEnd();
+            checkEnd();
+        }
     }
 
     public void chooseNewSeekerMeth(List<String> hiders) {
