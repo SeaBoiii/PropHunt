@@ -262,9 +262,11 @@ public class PropHuntListener implements Listener {
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent e) throws IllegalAccessException, InvocationTargetException, IOException {
         if (GameManager.hiders.contains(e.getEntity().getName())) {
-
             e.getDrops().clear();
             if (isLastHider()) {
+                if (GameManager.useSideStats) {
+                    PH.SBS.removeScoreboard(PH, e.getEntity());
+                }
                 GameManager.playersQuit.add(e.getEntity().getName());
                 GameManager.hiders.remove(e.getEntity().getName());
                 respawnQuick(e.getEntity());
@@ -287,6 +289,9 @@ public class PropHuntListener implements Listener {
         } else if (GameManager.seekers.contains(e.getEntity().getName())) {
             e.getDrops().clear();
             if (isLastSeeker()) {
+                if (GameManager.useSideStats) {
+                    PH.SBS.removeScoreboard(PH, e.getEntity());
+                }
                 if (GameManager.chooseNewSeeker && GameManager.firstSeeker.equalsIgnoreCase(e.getEntity().getName())) {
                     GameManager.playersQuit.add(e.getEntity().getName());
                     GameManager.seekers.remove(e.getEntity().getName());
@@ -310,6 +315,9 @@ public class PropHuntListener implements Listener {
                 }
             }
             if (noLivesLeft(e.getEntity())) {
+                if (GameManager.useSideStats) {
+                    PH.SBS.removeScoreboard(PH, e.getEntity());
+                }
                 PropHuntMessaging.broadcastMessageToPlayers(GameManager.hiders, GameManager.seekers, MessageBank.SEEKER_DEATH_MESSAGE.getMsg());
                 GameManager.spectators.add(e.getEntity().getName());
                 GameManager.seekers.remove(e.getEntity().getName());
