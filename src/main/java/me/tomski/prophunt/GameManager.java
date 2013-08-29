@@ -336,10 +336,8 @@ public class GameManager {
 
     public void endGame(Reason reason, boolean shutdown) throws IOException {
         plugin.getServer().getScheduler().cancelTask(TIMERID);
-
         String bcreason = broadcastEndReason(reason);
         PropHuntMessaging.broadcastMessage(bcreason);
-
         for (final String hider : hiders) {
             if (plugin.getServer().getPlayer(hider) != null) {
                 plugin.showPlayer(plugin.getServer().getPlayer(hider));

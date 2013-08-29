@@ -20,6 +20,7 @@ permissions:
             prophunt.command.leave: true
             prophunt.command.status: true
             prophunt.command.spectate: true
+            prophunt.command.chooser: true
             prophunt.prophunt: true
     prophunt.hostcommand.*:
         description: Gives access to all host commands
@@ -62,6 +63,9 @@ permissions:
     prophunt.command.spectate:
         default: op
         description: Allows use of PropHunt spectate!
+    prophunt.command.chooser:
+        default: op
+        description: Allows user of PropHunt chooser!
     prophunt.command.status:
         default: op
         description: Allows use of PropHunt status!
