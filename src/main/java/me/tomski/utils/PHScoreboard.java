@@ -24,6 +24,9 @@ public class PHScoreboard {
 
 
     public void updateTab(Player p) {
+        if (!p.isOnline()) {
+            return;
+        }
         TabAPI.setPriority(plugin, p, 2);
         TabAPI.updatePlayer(p);
 
