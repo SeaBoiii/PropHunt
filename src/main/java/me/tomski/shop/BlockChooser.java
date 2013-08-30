@@ -8,6 +8,7 @@ import me.tomski.prophunt.ShopSettings;
 import me.tomski.utils.PropHuntMessaging;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -46,6 +47,9 @@ public class BlockChooser implements Listener {
             if (e.getCurrentItem() != null) {
                 if (!hasPermsForBlock((Player) e.getWhoClicked(), e.getCurrentItem())) {
                     PropHuntMessaging.sendMessage((Player) e.getWhoClicked(), MessageBank.NO_BLOCK_CHOICE_PERMISSION.getMsg());
+                    return;
+                }
+                if ( e.getCurrentItem().getType().equals(Material.AIR)) {
                     return;
                 }
                 DisguiseManager.preChosenDisguise.put((Player) e.getWhoClicked(), parseItemToDisguise(e.getCurrentItem()));
