@@ -566,7 +566,11 @@ public class GameManager {
         if (GameManager.gameStatus) {
             if (seekers.size() == 0) {
                 if (GameManager.firstSeeker.equalsIgnoreCase(name)) {
-                    plugin.GM.chooseNewSeekerMeth(hiders);
+                    if (plugin.GM.chooseNewSeekerMeth()) {
+                        return;
+                    } else {
+                        endGame(Reason.SEEKERQUIT, false);
+                    }
                 } else {
                     endGame(Reason.SEEKERQUIT, false);
                 }
@@ -581,13 +585,19 @@ public class GameManager {
         }
     }
 
-    public void chooseNewSeekerMeth(List<String> hiders) {
+    public boolean chooseNewSeekerMeth() {
+        if (GameManager.hiders.size() <= 0) {
+            return false;
+        }
         Random rand = new Random();
-        String newSeeker = hiders.get(rand.nextInt(hiders.size()));
+        String newSeeker = hiders.get(rand.nextInt(GameManager.hiders.size()));
         if (Bukkit.getPlayer(newSeeker) != null) {
             Player newSeekerPlayer = Bukkit.getPlayer(newSeeker);
             newSeekerPlayer.setHealth(0);
             PropHuntMessaging.broadcastMessageToPlayers(GameManager.hiders, GameManager.seekers, MessageBank.NEW_SEEKER_CHOSEN.getMsg() + newSeeker);
+            return true;
+        } else {
+            return true;
         }
     }
 

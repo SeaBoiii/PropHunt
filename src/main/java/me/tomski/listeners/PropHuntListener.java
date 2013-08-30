@@ -296,8 +296,12 @@ public class PropHuntListener implements Listener {
                     GameManager.playersQuit.add(e.getEntity().getName());
                     GameManager.seekers.remove(e.getEntity().getName());
                     respawnQuick(e.getEntity());
-                    this.GM.chooseNewSeekerMeth(GameManager.hiders);
-                    return;
+                    if (GM.chooseNewSeekerMeth()) {
+                        return;
+                    } else {
+                        GM.endGame(Reason.HIDERSWON, false);
+                        return;
+                    }
                 }
                 if (noLivesLeft(e.getEntity())) {
                     GameManager.playersQuit.add(e.getEntity().getName());
