@@ -49,8 +49,8 @@ public class BlockChooser implements Listener {
                     return;
                 }
                 DisguiseManager.preChosenDisguise.put((Player) e.getWhoClicked(), parseItemToDisguise(e.getCurrentItem()));
-                e.getView().close();
                 PropHuntMessaging.sendMessage((Player) e.getWhoClicked(), MessageBank.SHOP_CHOSEN_DISGUISE.getMsg() + e.getCurrentItem().getItemMeta().getDisplayName());
+                e.getView().close();
             }
         }
     }
