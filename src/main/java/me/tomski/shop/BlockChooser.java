@@ -32,7 +32,7 @@ public class BlockChooser implements Listener {
     }
 
     public void openBlockShop(Player p) {
-        Inventory inv = Bukkit.createInventory(p, 9, ChatColor.DARK_AQUA + "Disguise Selector");
+        Inventory inv = Bukkit.createInventory(p, 45, ChatColor.DARK_AQUA + "Disguise Selector");
         for (ItemStack stack : ShopSettings.blockChoices) {
             inv.addItem(stack);
         }
@@ -50,7 +50,7 @@ public class BlockChooser implements Listener {
                 }
                 DisguiseManager.preChosenDisguise.put((Player) e.getWhoClicked(), parseItemToDisguise(e.getCurrentItem()));
                 e.getView().close();
-                PropHuntMessaging.sendMessage((Player) e.getWhoClicked(), MessageBank.SHOP_CHOSEN_DISGUISE + e.getCurrentItem().getItemMeta().getDisplayName());
+                PropHuntMessaging.sendMessage((Player) e.getWhoClicked(), MessageBank.SHOP_CHOSEN_DISGUISE.getMsg() + e.getCurrentItem().getItemMeta().getDisplayName());
             }
         }
     }
