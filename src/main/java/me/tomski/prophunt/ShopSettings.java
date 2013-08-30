@@ -38,7 +38,6 @@ public class ShopSettings {
             im.setLore(lore);
             s.setItemMeta(im);
             newStacks.add(s);
-            System.out.println(s.getItemMeta().getDisplayName());
         }
         return newStacks;
     }

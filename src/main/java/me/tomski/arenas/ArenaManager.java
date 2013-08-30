@@ -95,7 +95,6 @@ public class ArenaManager {
     public boolean deleteArena(String string) {
         String remove = null;
         for (String a : playableArenas.keySet()) {
-            System.out.print(a);
             if (a.equalsIgnoreCase(string)) {
                 remove = a;
                 arenasInRotation.remove(playableArenas.get(remove));

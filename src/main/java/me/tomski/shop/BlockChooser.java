@@ -32,10 +32,9 @@ public class BlockChooser implements Listener {
     }
 
     public void openBlockShop(Player p) {
-        Inventory inv = Bukkit.createInventory(p, getShopSize(ShopSettings.blockChoices.size()), ChatColor.DARK_AQUA + "Disguise Selector");
+        Inventory inv = Bukkit.createInventory(p, 9, ChatColor.DARK_AQUA + "Disguise Selector");
         for (ItemStack stack : ShopSettings.blockChoices) {
             inv.addItem(stack);
-            System.out.println(stack.getItemMeta().getDisplayName());
         }
         p.openInventory(inv);
         inInventory.add(p);
