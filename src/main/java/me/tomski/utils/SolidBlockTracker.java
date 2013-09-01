@@ -13,6 +13,7 @@ import me.tomski.prophunt.PropHunt;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import pgDev.bukkit.DisguiseCraft.disguise.DisguiseType;
 
 public class SolidBlockTracker implements Runnable {
 
@@ -50,7 +51,9 @@ public class SolidBlockTracker implements Runnable {
                     if (data == null) {
                         data = 0;
                     }
-                    sb = new SolidBlock(currentLocation.get(s), PropHunt.dc.getDisguise(Bukkit.getPlayer(s)).getBlockID(), data, Bukkit.getPlayer(s), PropHunt.protocolManager, plugin);
+                    if (PropHunt.dc.getDisguise(Bukkit.getPlayer(s)).getBlockID() != null) {
+                        sb = new SolidBlock(currentLocation.get(s), PropHunt.dc.getDisguise(Bukkit.getPlayer(s)).getBlockID(), data, Bukkit.getPlayer(s), PropHunt.protocolManager, plugin);
+                    }
                 } catch (InvocationTargetException e) {
                     e.printStackTrace();
                 }
