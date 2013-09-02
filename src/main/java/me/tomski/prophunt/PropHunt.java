@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 
+import me.tomski.language.ScoreboardTranslate;
 import me.tomski.prophuntstorage.ArenaStorage;
 import me.tomski.arenas.ArenaManager;
 import me.tomski.bungee.Pinger;
@@ -25,6 +26,7 @@ import me.tomski.utils.Reason;
 import me.tomski.utils.SideBarStats;
 import me.tomski.utils.SideTabTimer;
 
+import net.minecraft.server.v1_6_R2.Scoreboard;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -54,6 +56,7 @@ public class PropHunt extends JavaPlugin {
     public GameManager GM;
     public ArenaManager AM;
     private LanguageManager LM;
+    public ScoreboardTranslate ST;
     public SideBarStats SBS;
     public static boolean usingTABAPI = false;
     public BlockChooser blockChooser;
@@ -103,10 +106,11 @@ public class PropHunt extends JavaPlugin {
         loadConfigSettings();
         AutomationSettings.initSettings(this);
         LM = new LanguageManager(this);
+        ST = new ScoreboardTranslate(this);
 
         AS.loadData();
         if (GameManager.useSideStats) {
-            SBS = new SideBarStats();
+            SBS = new SideBarStats(this);
 
             SideTabTimer stt = new SideTabTimer(SBS);
             getServer().getScheduler().scheduleSyncRepeatingTask(this, stt, 20L, 20L);

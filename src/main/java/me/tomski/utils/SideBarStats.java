@@ -19,8 +19,12 @@ import org.bukkit.scoreboard.Scoreboard;
 public class SideBarStats {
 
     Scoreboard board;
+    PropHunt plugin;
     public static Map<Player, Scoreboard> playerBoards = new HashMap<Player, Scoreboard>();
 
+    public SideBarStats(PropHunt plugin) {
+        this.plugin = plugin;
+    }
 
     public void updateBoard() {
         for (Player p : playerBoards.keySet()) {
@@ -32,11 +36,11 @@ public class SideBarStats {
                 if (ob == null) {
                     ob = playerBoards.get(p).registerNewObjective("seekerboard", "dummy");
                 }
-                Score score = ob.getScore(Bukkit.getOfflinePlayer(ChatColor.RED + "Seekers: "));
+                Score score = ob.getScore(Bukkit.getOfflinePlayer(ChatColor.RED + plugin.ST.seeker_Translate + ": "));
                 score.setScore(GameManager.seekers.size());
-                Score score1 = ob.getScore(Bukkit.getOfflinePlayer(ChatColor.AQUA + "Hiders: "));
+                Score score1 = ob.getScore(Bukkit.getOfflinePlayer(ChatColor.AQUA + plugin.ST.hider_Translate + ": "));
                 score1.setScore(GameManager.hiders.size());
-                Score score2 = ob.getScore(Bukkit.getOfflinePlayer(ChatColor.WHITE + "TimeLeft: "));
+                Score score2 = ob.getScore(Bukkit.getOfflinePlayer(ChatColor.WHITE + plugin.ST.time_Left_Translate + ": "));
                 score2.setScore(GameManager.timeleft);
 
             }
@@ -48,22 +52,22 @@ public class SideBarStats {
                 if (PropHunt.dc.isDisguised(p)) {
                     ob.setDisplayName(ChatColor.AQUA + DisguiseManager.parseDisguiseToName(PropHunt.dc.getDisguise(p)));
                 }
-                Score score = ob.getScore(Bukkit.getOfflinePlayer(ChatColor.RED + "Seekers: "));
+                Score score = ob.getScore(Bukkit.getOfflinePlayer(ChatColor.RED + plugin.ST.seeker_Translate +  ": "));
                 score.setScore(GameManager.seekers.size());
 
-                Score score1 = ob.getScore(Bukkit.getOfflinePlayer(ChatColor.AQUA + "Hiders: "));
+                Score score1 = ob.getScore(Bukkit.getOfflinePlayer(ChatColor.AQUA + plugin.ST.hider_Translate +  ": "));
                 score1.setScore(GameManager.hiders.size());
 
-                Score score2 = ob.getScore(Bukkit.getOfflinePlayer(ChatColor.WHITE + "TimeLeft: "));
+                Score score2 = ob.getScore(Bukkit.getOfflinePlayer(ChatColor.WHITE + plugin.ST.time_Left_Translate + ": "));
                 score2.setScore(GameManager.timeleft);
                 if (GameManager.usingSolidBlock) {
-                    Score score3 = ob.getScore(Bukkit.getOfflinePlayer(ChatColor.GREEN + "" + ChatColor.ITALIC + "SolidTime:"));
+                    Score score3 = ob.getScore(Bukkit.getOfflinePlayer(ChatColor.GREEN + "" + ChatColor.ITALIC + plugin.ST.solid_Time_Translate +  ":"));
                     if (SolidBlockTracker.solidBlocks.containsKey(p.getName())) {
-                        p.getScoreboard().resetScores(Bukkit.getOfflinePlayer(ChatColor.GREEN + "" + ChatColor.ITALIC + "SolidTime:"));
-                        Score newscore = ob.getScore(Bukkit.getOfflinePlayer(ChatColor.GOLD + "" + ChatColor.BOLD + "SOLID"));
+                        p.getScoreboard().resetScores(Bukkit.getOfflinePlayer(ChatColor.GREEN + "" + ChatColor.ITALIC + plugin.ST.solid_Time_Translate +  ":"));
+                        Score newscore = ob.getScore(Bukkit.getOfflinePlayer(ChatColor.GOLD + "" + ChatColor.BOLD + plugin.ST.solid_Translate +  ""));
                         newscore.setScore(1);
                     } else {
-                        p.getScoreboard().resetScores(Bukkit.getOfflinePlayer(ChatColor.GOLD + "" + ChatColor.BOLD + "SOLID"));
+                        p.getScoreboard().resetScores(Bukkit.getOfflinePlayer(ChatColor.GOLD + "" + ChatColor.BOLD + plugin.ST.solid_Translate +  ""));
                         score3.setScore(GameManager.solidBlockTime - SolidBlockTracker.movementTracker.get(p.getName()));
                     }
                 }
@@ -74,25 +78,25 @@ public class SideBarStats {
                     ob = playerBoards.get(p).registerNewObjective("lobbyboard", "dummy");
                 }
                 if (!GameManager.gameStatus) {
-                    Score scorey = ob.getScore(Bukkit.getOfflinePlayer(ChatColor.GREEN + "Starting in"));
+                    Score scorey = ob.getScore(Bukkit.getOfflinePlayer(ChatColor.GREEN + plugin.ST.starting_In_Translate +  ""));
                     scorey.setScore(GameManager.currentLobbyTime);
                 } else {
-                    p.getScoreboard().resetScores(Bukkit.getOfflinePlayer(ChatColor.GREEN + "Starting in"));
+                    p.getScoreboard().resetScores(Bukkit.getOfflinePlayer(ChatColor.GREEN + plugin.ST.starting_In_Translate +  ""));
 
                 }
-                Score score = ob.getScore(Bukkit.getOfflinePlayer(ChatColor.RED + "Seekers: "));
+                Score score = ob.getScore(Bukkit.getOfflinePlayer(ChatColor.RED + plugin.ST.seeker_Translate + ": "));
                 score.setScore(GameManager.seekers.size());
 
-                Score score1 = ob.getScore(Bukkit.getOfflinePlayer(ChatColor.AQUA + "Hiders: "));
+                Score score1 = ob.getScore(Bukkit.getOfflinePlayer(ChatColor.AQUA + plugin.ST.hider_Translate + ": "));
                 score1.setScore(GameManager.hiders.size());
 
-                Score score2 = ob.getScore(Bukkit.getOfflinePlayer(ChatColor.WHITE + "TimeLeft: "));
+                Score score2 = ob.getScore(Bukkit.getOfflinePlayer(ChatColor.WHITE + plugin.ST.time_Left_Translate + ": "));
                 score2.setScore(GameManager.timeleft);
 
 
-                Score score3 = ob.getScore(Bukkit.getOfflinePlayer(ChatColor.YELLOW + "Players: "));
+                Score score3 = ob.getScore(Bukkit.getOfflinePlayer(ChatColor.YELLOW + plugin.ST.player_Translate +  ": "));
                 score3.setScore(GameManager.playersWaiting.size());
-                Score score4 = ob.getScore(Bukkit.getOfflinePlayer(ChatColor.GRAY + "Spectators: "));
+                Score score4 = ob.getScore(Bukkit.getOfflinePlayer(ChatColor.GRAY + plugin.ST.spectator_Translate +  ": "));
                 score4.setScore(GameManager.spectators.size());
             }
             if (GameManager.spectators.contains(p.getName())) {
@@ -100,19 +104,19 @@ public class SideBarStats {
                 if (ob == null) {
                     ob = playerBoards.get(p).registerNewObjective("lobbyboard", "dummy");
                 }
-                Score score = ob.getScore(Bukkit.getOfflinePlayer(ChatColor.RED + "Seekers: "));
+                Score score = ob.getScore(Bukkit.getOfflinePlayer(ChatColor.RED + plugin.ST.seeker_Translate + ": "));
                 score.setScore(GameManager.seekers.size());
 
-                Score score1 = ob.getScore(Bukkit.getOfflinePlayer(ChatColor.AQUA + "Hiders: "));
+                Score score1 = ob.getScore(Bukkit.getOfflinePlayer(ChatColor.AQUA + plugin.ST.hider_Translate + ": "));
                 score1.setScore(GameManager.hiders.size());
 
-                Score score2 = ob.getScore(Bukkit.getOfflinePlayer(ChatColor.WHITE + "TimeLeft: "));
+                Score score2 = ob.getScore(Bukkit.getOfflinePlayer(ChatColor.WHITE + plugin.ST.time_Left_Translate + ": "));
                 score2.setScore(GameManager.timeleft);
 
 
-                Score score3 = ob.getScore(Bukkit.getOfflinePlayer(ChatColor.YELLOW + "Players: "));
+                Score score3 = ob.getScore(Bukkit.getOfflinePlayer(ChatColor.YELLOW + plugin.ST.player_Translate +  ": "));
                 score3.setScore(GameManager.playersWaiting.size());
-                Score score4 = ob.getScore(Bukkit.getOfflinePlayer(ChatColor.GRAY + "Spectators: "));
+                Score score4 = ob.getScore(Bukkit.getOfflinePlayer(ChatColor.GRAY + plugin.ST.spectator_Translate +  ": "));
                 score4.setScore(GameManager.spectators.size());
             }
 
@@ -143,13 +147,13 @@ public class SideBarStats {
             Objective ob = sb.registerNewObjective("seekerboard", "dummy");
             ob.setDisplaySlot(DisplaySlot.SIDEBAR);
             ob.setDisplayName(ChatColor.GOLD + "PropHunt Stats");
-            Score score = ob.getScore(Bukkit.getOfflinePlayer(ChatColor.RED + "Seekers: "));
+            Score score = ob.getScore(Bukkit.getOfflinePlayer(ChatColor.RED + plugin.ST.seeker_Translate + ": "));
             score.setScore(GameManager.seekers.size());
 
-            Score score1 = ob.getScore(Bukkit.getOfflinePlayer(ChatColor.AQUA + "Hiders: "));
+            Score score1 = ob.getScore(Bukkit.getOfflinePlayer(ChatColor.AQUA + plugin.ST.hider_Translate + ": "));
             score1.setScore(GameManager.hiders.size());
 
-            Score score2 = ob.getScore(Bukkit.getOfflinePlayer(ChatColor.WHITE + "TimeLeft: "));
+            Score score2 = ob.getScore(Bukkit.getOfflinePlayer(ChatColor.WHITE + plugin.ST.time_Left_Translate + ": "));
             score2.setScore(GameManager.timeleft);
 
             p.setScoreboard(sb);
@@ -160,13 +164,13 @@ public class SideBarStats {
             Objective ob = sb.registerNewObjective("hiderboard", "dummy");
             ob.setDisplaySlot(DisplaySlot.SIDEBAR);
             ob.setDisplayName(ChatColor.AQUA + DisguiseManager.parseDisguiseToName(PropHunt.dc.getDisguise(p)));
-            Score score = ob.getScore(Bukkit.getOfflinePlayer(ChatColor.RED + "Seekers: "));
+            Score score = ob.getScore(Bukkit.getOfflinePlayer(ChatColor.RED + plugin.ST.seeker_Translate + ": "));
             score.setScore(GameManager.seekers.size());
 
-            Score score1 = ob.getScore(Bukkit.getOfflinePlayer(ChatColor.AQUA + "Hiders: "));
+            Score score1 = ob.getScore(Bukkit.getOfflinePlayer(ChatColor.AQUA + plugin.ST.hider_Translate + ": "));
             score1.setScore(GameManager.hiders.size());
 
-            Score score2 = ob.getScore(Bukkit.getOfflinePlayer(ChatColor.WHITE + "TimeLeft: "));
+            Score score2 = ob.getScore(Bukkit.getOfflinePlayer(ChatColor.WHITE + plugin.ST.time_Left_Translate + ": "));
             score2.setScore(GameManager.timeleft);
 
             p.setScoreboard(sb);
@@ -189,19 +193,19 @@ public class SideBarStats {
                 ob.setDisplayName(ChatColor.GOLD + "PropHunt Stats");
                 if (GameManager.gameStatus) {
 
-                    Score score = ob.getScore(Bukkit.getOfflinePlayer(ChatColor.RED + "Seekers: "));
+                    Score score = ob.getScore(Bukkit.getOfflinePlayer(ChatColor.RED + plugin.ST.seeker_Translate + ": "));
                     score.setScore(GameManager.seekers.size());
 
-                    Score score1 = ob.getScore(Bukkit.getOfflinePlayer(ChatColor.AQUA + "Hiders: "));
+                    Score score1 = ob.getScore(Bukkit.getOfflinePlayer(ChatColor.AQUA + plugin.ST.hider_Translate + ": "));
                     score1.setScore(GameManager.hiders.size());
 
-                    Score score2 = ob.getScore(Bukkit.getOfflinePlayer(ChatColor.WHITE + "TimeLeft: "));
+                    Score score2 = ob.getScore(Bukkit.getOfflinePlayer(ChatColor.WHITE + plugin.ST.time_Left_Translate + ": "));
                     score2.setScore(GameManager.timeleft);
 
 
-                    Score score3 = ob.getScore(Bukkit.getOfflinePlayer(ChatColor.YELLOW + "Players: "));
+                    Score score3 = ob.getScore(Bukkit.getOfflinePlayer(ChatColor.YELLOW + plugin.ST.player_Translate +  ": "));
                     score3.setScore(GameManager.playersWaiting.size());
-                    Score score4 = ob.getScore(Bukkit.getOfflinePlayer(ChatColor.GRAY + "Spectators: "));
+                    Score score4 = ob.getScore(Bukkit.getOfflinePlayer(ChatColor.GRAY + plugin.ST.spectator_Translate +  ": "));
                     score4.setScore(GameManager.spectators.size());
 
 
@@ -210,10 +214,10 @@ public class SideBarStats {
                 } else {
                     ob.setDisplayName(ChatColor.GOLD + "Arena: " + ChatColor.AQUA + GameManager.currentGameArena.getArenaName());
 
-                    Score score = ob.getScore(Bukkit.getOfflinePlayer(ChatColor.GREEN + "Starting in"));
+                    Score score = ob.getScore(Bukkit.getOfflinePlayer(ChatColor.GREEN + plugin.ST.starting_In_Translate +  ""));
                     score.setScore(GameManager.currentLobbyTime);
 
-                    Score score3 = ob.getScore(Bukkit.getOfflinePlayer(ChatColor.YELLOW + "Players: "));
+                    Score score3 = ob.getScore(Bukkit.getOfflinePlayer(ChatColor.YELLOW + plugin.ST.player_Translate +  ": "));
                     score3.setScore(GameManager.playersWaiting.size());
 
                     p.setScoreboard(sb);
