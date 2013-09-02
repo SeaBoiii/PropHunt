@@ -121,7 +121,10 @@ public class SideBarStats {
 
 
     public void removeScoreboard(PropHunt plugin, Player p) {
-        if (!p.isOnline() || p == null) {
+        if (p == null) {
+            return;
+        }
+        if (!p.isOnline()) {
             return;
         }
         if (playerBoards.containsKey(p)) {
