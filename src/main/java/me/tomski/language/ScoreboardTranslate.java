@@ -53,32 +53,45 @@ public class ScoreboardTranslate {
         String key = "Translate-Words.";
         if (getTranslateFile().contains(key + "Players")) {
             player_Translate = getTranslateFile().getString(key + "Players");
+            maxLength(player_Translate);
         }
         if (getTranslateFile().contains(key + "Seekers")) {
             seeker_Translate = getTranslateFile().getString(key + "Seekers");
+            maxLength(seeker_Translate);
         }
         if (getTranslateFile().contains(key + "Hiders")) {
             hider_Translate = getTranslateFile().getString(key + "Hiders");
+            maxLength(hider_Translate);
         }
         if (getTranslateFile().contains(key + "Spectators")) {
             spectator_Translate = getTranslateFile().getString(key + "Spectators");
+            maxLength(spectator_Translate);
         }
         if (getTranslateFile().contains(key + "Time-Left")) {
             time_Left_Translate = getTranslateFile().getString(key + "Time-Left");
+            maxLength(time_Left_Translate);
         }
         if (getTranslateFile().contains(key + "Starting-In")) {
             starting_In_Translate = getTranslateFile().getString(key + "Starting-In");
+            maxLength(starting_In_Translate);
         }
         if (getTranslateFile().contains(key + "Solid-Time")) {
             solid_Time_Translate = getTranslateFile().getString(key + "Solid-Time");
+            maxLength(solid_Time_Translate);
         }
         if (getTranslateFile().contains(key + "Solid")) {
             solid_Translate = getTranslateFile().getString(key + "Solid");
+            maxLength(solid_Time_Translate);
         }
         for (String keyy : getTranslateFile().getConfigurationSection("Disguise-Translations").getKeys(false)) {
-            disguise_Translations.put(keyy, getTranslateFile().getString("Disguise-Translations."+keyy));
+            disguise_Translations.put(keyy, maxLength(getTranslateFile().getString("Disguise-Translations."+keyy)));
         }
 
+    }
+
+    private String maxLength(String s) {
+        s = s.substring(0,16);
+        return s;
     }
 
 
