@@ -94,6 +94,9 @@ public class DisguiseManager {
                     return Colour + " Wool";
                 }
             }
+            if (plugin.ST.usingTranslations) {
+                return plugin.ST.getDisguiseTranslate(Material.getMaterial(ds.getBlockID()).name());
+            }
             return Material.getMaterial(ds.getBlockID()).name();
         } else {
             return ds.type.name();
