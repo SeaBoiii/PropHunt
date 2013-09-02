@@ -1,15 +1,15 @@
 ##### Translate file for the scoreboard
 use-translate: false
 Translate-Words:
-    Players: Игроки
-    Seekers: Охотники
-    Hiders: Пропы
-    Spectators: Наблюдатели
-    Time-Left: Время
-    Starting-In: До начала
-    Solid-Time: Маскировка
-    Solid: Зафиксирован
+    Players: Players
+    Seekers: Seekers
+    Hiders: Hiders
+    Spectators: Spectators
+    Time-Left: TimeLeft
+    Starting-In: Starting in
+    Solid-Time: SoldTime
+    Solid: SOLID
 Disguise-Translations:
-    WOODEN_DOOR: Деревянная дверь
-    SANDSTONE_STAIRS: Ступенька из песчаника
-    NOTE_BLOCK: Нотный блок
+    WOODEN_DOOR: Wooden Door
+    SANDSTONE_STAIRS: Sandstone Stairs
+    NOTE_BLOCK: Note Block
