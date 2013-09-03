@@ -58,6 +58,15 @@ public class MainShop implements Listener {
         placeMeta.setLore(placeLore);
         placeHolder.setItemMeta(placeMeta);
 
+        ItemStack loadout = new ItemStack(Material.ENDER_CHEST);
+        ItemMeta loadMeta = customItems.getItemMeta();
+        loadMeta.setDisplayName(ChatColor.DARK_RED + "Loadout Chooser");
+        List<String> loadLore = new ArrayList<String>();
+        loadLore.add(ChatColor.GOLD + "Use to select your loadout!");
+        loadLore.add(ChatColor.GOLD + "You need to be in the lobby!");
+        loadMeta.setLore(loadLore);
+        loadout.setItemMeta(loadMeta);
+
         ItemStack currency = new ItemStack(Material.EMERALD);
         ItemMeta currencyMeta = customItems.getItemMeta();
         currencyMeta.setDisplayName(ChatColor.GOLD + "Your " + ShopSettings.currencyName);
@@ -66,9 +75,11 @@ public class MainShop implements Listener {
         currencyMeta.setLore(currencyLore);
         currency.setItemMeta(currencyMeta);
 
-        inv.setItem(3, customItems);
-        inv.setItem(4, customDisguises);
-        inv.setItem(5, placeHolder);
+        inv.setItem(2, customItems);
+        inv.setItem(3, customDisguises);
+        inv.setItem(4, placeHolder);
+        inv.setItem(5, loadout);
+
         inv.setItem(8, currency);
         inMenu.add(p);
         p.openInventory(inv);
