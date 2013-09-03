@@ -29,7 +29,6 @@ public class MainShop implements Listener {
     }
 
 
-
     public void openMainShop(Player p) {
         Inventory inv = Bukkit.createInventory(p, 9, ChatColor.BLUE + "PropHunt Shop!");
         ItemStack customItems = new ItemStack(Material.DIAMOND_SWORD);
@@ -76,18 +75,27 @@ public class MainShop implements Listener {
     }
 
     @EventHandler
-    public void onInventoryClick(InventoryClickEvent e) {
-        if (inMenu.contains((Player)e.getWhoClicked()))  {
+    public void onInventoryClick(final InventoryClickEvent e) {
+        if (inMenu.contains((Player) e.getWhoClicked())) {
             if (e.getCurrentItem() != null) {
                 if (!e.getCurrentItem().getType().equals(Material.AIR)) {
                     if (e.getCurrentItem().getType().equals(Material.ENDER_CHEST)) {
                         //block chooser
                         e.getView().close();
-                        plugin.blockChooser.openBlockShop((Player)e.getWhoClicked());
+                        plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+                            @Override
+                            public void run() {
+                                plugin.blockChooser.openBlockShop((Player) e.getWhoClicked());
+                            }
+                        }, 2L);
                     } else if (e.getCurrentItem().getType().equals(Material.GOLD_BLOCK)) {
                         //disguise purchase
+                        e.getView().close();
                     } else if (e.getCurrentItem().getType().equals(Material.DIAMOND_SWORD)) {
-                       //item shop
+                        //item shop
+                        e.getView().close();
+                    } else {
+                        e.getView().close();
                     }
                 }
             }
