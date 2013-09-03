@@ -42,7 +42,7 @@ public class MainShop implements Listener {
 
         ItemStack customDisguises = new ItemStack(Material.GOLD_BLOCK);
         ItemMeta disguiseMeta = customItems.getItemMeta();
-        disguiseMeta.setDisplayName(ChatColor.DARK_GREEN + "PropHunt Disguise Shop");
+        disguiseMeta.setDisplayName(ChatColor.DARK_GREEN + "PropHunt Disguises");
         List<String> disLore = new ArrayList<String>();
         disLore.add(ChatColor.GOLD + "Buy your PropHunt disguises here!");
         disguiseMeta.setLore(disLore);
