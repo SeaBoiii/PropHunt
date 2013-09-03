@@ -58,3 +58,4 @@
     - Block chooser is permission based. They must have the permission prophunt.blockchooser.<blockid>  or prophunt.blockchooser.<blockid>-<blockDamage> to choose one!
     - add scoreboardtranslate.yml for trasnlating the scoreboard
     - Change {kickalltohub} command to kickalltohub
+    - Add ./ph shop   permission prophunt.command.shop

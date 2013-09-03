@@ -21,6 +21,7 @@ permissions:
             prophunt.command.status: true
             prophunt.command.spectate: true
             prophunt.command.chooser: true
+            prophunt.command.shop: true
             prophunt.prophunt: true
     prophunt.hostcommand.*:
         description: Gives access to all host commands
@@ -66,6 +67,9 @@ permissions:
     prophunt.command.chooser:
         default: op
         description: Allows user of PropHunt chooser!
+    prophunt.command.shop:
+        default: op
+        description: Allows use of PropHunt shop!
     prophunt.command.status:
         default: op
         description: Allows use of PropHunt status!

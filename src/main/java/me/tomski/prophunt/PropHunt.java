@@ -18,6 +18,7 @@ import me.tomski.blocks.ProtocolTask;
 import me.tomski.classes.SeekerClass;
 import me.tomski.listeners.PropHuntListener;
 import me.tomski.shop.BlockChooser;
+import me.tomski.shop.MainShop;
 import me.tomski.utils.LogFilter;
 import me.tomski.utils.MetricsLite;
 import me.tomski.utils.PingTimer;
@@ -60,6 +61,7 @@ public class PropHunt extends JavaPlugin {
     public SideBarStats SBS;
     public static boolean usingTABAPI = false;
     public BlockChooser blockChooser;
+    public MainShop mainShop;
 
 
     public void onEnable() {
@@ -98,6 +100,7 @@ public class PropHunt extends JavaPlugin {
         dc = DisguiseCraft.getAPI();
 
         dm = new DisguiseManager(this);
+        mainShop = new MainShop();
         loadProtocolManager();
         ProtocolTask pt = new ProtocolTask(this);
         pt.initProtocol();
@@ -396,6 +399,13 @@ public class PropHunt extends JavaPlugin {
                         }
                         PropHuntMessaging.sendGameStatus(p);
                         return true;
+                    }
+                    if( args[0].equalsIgnoreCase("shop")) {
+                        if (!sender.hasPermission("prophunt.command.shop")) {
+                            PropHuntMessaging.sendMessage(p, "You do not have the permission to use the shop");
+                            return true;
+                        }
+                        mainShop.openMainShop(p);
                     }
                     if( args[0].equalsIgnoreCase("chooser")) {
                         if (!sender.hasPermission("prophunt.command.chooser")) {
