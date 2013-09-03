@@ -47,6 +47,7 @@ public class AutomationSettings {
                         plugin.getServer().dispatchCommand(plugin.getServer().getConsoleSender(), command);
                     }
                 }
+                gamesPlayed = 0;
                 return true;
             }
         } else {
