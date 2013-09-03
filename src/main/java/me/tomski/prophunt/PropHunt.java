@@ -160,7 +160,7 @@ public class PropHunt extends JavaPlugin {
             getLogger().log(Level.WARNING, "Arena Not Setup, automatic hosting disabled");
             return false;
         } else {
-            getLogger().log(Level.WARNING, "Arena Setup, automatic hosting starting");
+            getLogger().log(Level.INFO, "Arena Setup, automatic hosting starting");
             GM.hostGame(null, ArenaManager.arenasInRotation.get(0));
             return true;
         }

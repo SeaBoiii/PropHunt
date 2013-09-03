@@ -48,7 +48,7 @@ public class AutomationSettings {
                     }
                 }
                 gamesPlayed = 0;
-                return true;
+                return false;
             }
         } else {
             return false;
