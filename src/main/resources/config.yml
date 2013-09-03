@@ -26,7 +26,7 @@ AutomationSettings:
   commands:
     - say PropHunt Server resetting!
     - give tomskied 357 1
-    - {kickalltohub}
+    - kickalltohub
     - stop
 ServerSettings:
   force-motd-prophunt: false

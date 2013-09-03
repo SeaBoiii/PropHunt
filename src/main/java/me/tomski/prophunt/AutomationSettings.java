@@ -26,7 +26,7 @@ public class AutomationSettings {
             gamesPlayed++;
             if (gamesPlayed == gamesTillReset) {
                 for (String command : commandsToRun) {
-                    if (command.equalsIgnoreCase("{kickalltohub}")) {
+                    if (command.equalsIgnoreCase("kickalltohub")) {
                         Pinger ping = new Pinger(plugin);
                         for (Player p : plugin.getServer().getOnlinePlayers()) {
                             try {
