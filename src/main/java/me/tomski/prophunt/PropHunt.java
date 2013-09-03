@@ -123,6 +123,7 @@ public class PropHunt extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PropHuntListener(this, GM), this);
         getServer().getPluginManager().registerEvents(new SetupListener(this), this);
         getServer().getPluginManager().registerEvents(new ServerManager(this), this);
+        getServer().getPluginManager().registerEvents(mainShop, this);
         blockChooser = new BlockChooser(this);
         getServer().getPluginManager().registerEvents(blockChooser, this);
 

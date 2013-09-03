@@ -6,6 +6,9 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -13,7 +16,9 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainShop {
+public class MainShop implements Listener {
+
+    public List<Player> inMenu = new ArrayList<Player>();
 
 
     public void openMainShop(Player p) {
@@ -56,7 +61,15 @@ public class MainShop {
         inv.setItem(4, customDisguises);
         inv.setItem(5, placeHolder);
         inv.setItem(8, currency);
-
+        inMenu.add(p);
         p.openInventory(inv);
     }
+
+    @EventHandler
+    public void onInventoryClose(InventoryCloseEvent e) {
+        if (inMenu.contains(e.getPlayer())) {
+            inMenu.remove(e.getPlayer());
+        }
+    }
+
 }
