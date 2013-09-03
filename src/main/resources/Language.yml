@@ -62,6 +62,7 @@ disguise_message: "You have been disguised as a "
 
 shop_chosen_disguise: "You have chosen your disguise: "
 no_block_choice_permission: "You dont have permission for that disguise"
+not_in_lobby: "You are not in the lobby"
 
 # setup
 seeker_spawn_set: "Seeker spawn Set"

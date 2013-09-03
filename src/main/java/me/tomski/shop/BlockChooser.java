@@ -34,7 +34,8 @@ public class BlockChooser implements Listener {
     }
 
     public void openBlockShop(Player p) {
-        if (!GameManager.gameStatus) {
+        if (!GameManager.playersWaiting.contains(p.getName())) {
+            PropHuntMessaging.sendMessage(p, MessageBank.NOT_IN_LOBBY.getMsg());
             return;
         }
         Inventory inv = Bukkit.createInventory(p, getShopSize(ShopSettings.blockChoices.size()), ChatColor.DARK_AQUA + "Disguise Selector");
