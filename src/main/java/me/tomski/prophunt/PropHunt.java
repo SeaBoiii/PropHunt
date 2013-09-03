@@ -100,7 +100,7 @@ public class PropHunt extends JavaPlugin {
         dc = DisguiseCraft.getAPI();
 
         dm = new DisguiseManager(this);
-        mainShop = new MainShop();
+        mainShop = new MainShop(this);
         loadProtocolManager();
         ProtocolTask pt = new ProtocolTask(this);
         pt.initProtocol();

@@ -3,6 +3,7 @@ package me.tomski.shop;
 
 import me.tomski.language.MessageBank;
 import me.tomski.prophunt.DisguiseManager;
+import me.tomski.prophunt.GameManager;
 import me.tomski.prophunt.PropHunt;
 import me.tomski.prophunt.ShopSettings;
 import me.tomski.utils.PropHuntMessaging;
@@ -33,6 +34,9 @@ public class BlockChooser implements Listener {
     }
 
     public void openBlockShop(Player p) {
+        if (!GameManager.gameStatus) {
+            return;
+        }
         Inventory inv = Bukkit.createInventory(p, getShopSize(ShopSettings.blockChoices.size()), ChatColor.DARK_AQUA + "Disguise Selector");
         for (ItemStack stack : ShopSettings.blockChoices) {
             inv.addItem(stack);
