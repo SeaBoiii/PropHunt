@@ -90,7 +90,7 @@ public class ScoreboardTranslate {
     }
 
     private String maxLength(String s) {
-        String finalS = s.length() < 16 ? s : s.substring(0, 16);
+        String finalS = s.length() < 12 ? s : s.substring(0, 12);
         return finalS;
     }
 
