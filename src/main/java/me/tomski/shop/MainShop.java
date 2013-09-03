@@ -58,7 +58,7 @@ public class MainShop implements Listener {
         placeMeta.setLore(placeLore);
         placeHolder.setItemMeta(placeMeta);
 
-        ItemStack loadout = new ItemStack(Material.ENDER_CHEST);
+        ItemStack loadout = new ItemStack(Material.CHEST);
         ItemMeta loadMeta = customItems.getItemMeta();
         loadMeta.setDisplayName(ChatColor.DARK_RED + "Loadout Chooser");
         List<String> loadLore = new ArrayList<String>();
