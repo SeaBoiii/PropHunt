@@ -42,10 +42,17 @@ BungeeSettings:
   this-bungee-server-name: prophunt1
 ShopSettings:
   currency-name: "Cookies"
+  use-vault: false
   block-choices:
   - 2
   - 4
   - "34:4"
+DatabaseSettings:
+    type: mysql
+    host: localhost
+    database: minecraft
+    username: root
+    password: bananas
 block-disguises:
 - 1
 - 2
