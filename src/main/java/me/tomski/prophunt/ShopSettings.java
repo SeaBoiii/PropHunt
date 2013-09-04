@@ -13,6 +13,8 @@ public class ShopSettings {
 
     public static List<ItemStack> blockChoices = new ArrayList<ItemStack>();
     public static String currencyName;
+    public static boolean usingVault;
+    public static boolean enabled;
 
     public static List<ItemStack> generateBlockChoices(List<String> stringList) {
         List<ItemStack> stacks = new ArrayList<ItemStack>();

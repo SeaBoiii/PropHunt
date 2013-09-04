@@ -43,7 +43,7 @@ BungeeSettings:
 ShopSettings:
   use-shop: true
   currency-name: "Cookies"
-  use-vault: false
+  use-vault-for-currency: false
   block-choices:
   - 2
   - 4

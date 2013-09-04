@@ -16,4 +16,5 @@ public class ShopItem {
         this.itemCost = cost;
         this.itemPermission = permission;
     }
+
 }

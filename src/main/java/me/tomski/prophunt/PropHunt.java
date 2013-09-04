@@ -19,13 +19,7 @@ import me.tomski.classes.SeekerClass;
 import me.tomski.listeners.PropHuntListener;
 import me.tomski.shop.BlockChooser;
 import me.tomski.shop.MainShop;
-import me.tomski.utils.LogFilter;
-import me.tomski.utils.MetricsLite;
-import me.tomski.utils.PingTimer;
-import me.tomski.utils.PropHuntMessaging;
-import me.tomski.utils.Reason;
-import me.tomski.utils.SideBarStats;
-import me.tomski.utils.SideTabTimer;
+import me.tomski.utils.*;
 
 import net.minecraft.server.v1_6_R2.Scoreboard;
 import org.bukkit.Material;
@@ -62,6 +56,7 @@ public class PropHunt extends JavaPlugin {
     public static boolean usingTABAPI = false;
     public BlockChooser blockChooser;
     public MainShop mainShop;
+    public VaultUtils vaultUtils;
 
 
     public void onEnable() {
@@ -98,8 +93,8 @@ public class PropHunt extends JavaPlugin {
         AM = new ArenaManager(this);
 
         dc = DisguiseCraft.getAPI();
-
         dm = new DisguiseManager(this);
+
         mainShop = new MainShop(this);
         loadProtocolManager();
         ProtocolTask pt = new ProtocolTask(this);
@@ -136,8 +131,21 @@ public class PropHunt extends JavaPlugin {
             getLogger().info("Ping timer initiated at " + BungeeSettings.pingInterval + " ticks per ping");
         }
 
+
+
+        loadEconomySettings();
+
+
         if (GameManager.automatic) {
             checkAUTOReady();
+        }
+    }
+
+    private void loadEconomySettings() {
+        if (ShopSettings.usingVault) {
+            vaultUtils = new VaultUtils(this);
+        } else {
+            //TODO load sql currency!
         }
     }
 
@@ -277,6 +285,7 @@ public class PropHunt extends JavaPlugin {
         }
         if (getConfig().contains("ShopSettings")) {
             ShopSettings.currencyName = getConfig().getString("ShopSettings.currency-name");
+            ShopSettings.usingVault = getConfig().getBoolean("ShopSettings.use-vault-for-currency");
             ShopSettings.blockChoices = ShopSettings.generateBlockChoices(getConfig().getStringList("ShopSettings.block-choices"));
             ShopSettings.blockChoices = ShopSettings.cleanStacks();
         }

@@ -35,12 +35,10 @@ public class SolidBlock {
         d = PropHunt.dc.getDisguise(p);
         if (d.type.equals(DisguiseType.FallingBlock)) {
             d.addSingleData("blocklock");
-            d.addSingleData("nomove");
         }
         blockChange = getBlockPacket();
         this.owner = p;
         PropHuntListener.tempIgnoreUndisguise.add(owner);
-        d.data.remove("nomove");
 
         plugin.hidePlayer(owner, owner.getInventory().getArmorContents());
 
@@ -90,8 +88,6 @@ public class SolidBlock {
             Disguise d = PropHunt.dc.getDisguise(owner);
             if (d.type.equals(DisguiseType.FallingBlock)) {
                 d.data.remove("blocklock");
-                d.data.remove("nomove");
-
             }
         }
     }

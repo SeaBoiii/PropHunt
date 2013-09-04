@@ -453,6 +453,9 @@ public class GameManager {
         }
 
         if (usingSolidBlock) {
+            SolidBlockTracker.solidBlocks.clear();
+            SolidBlockTracker.currentLocation.clear();
+            SolidBlockTracker.movementTracker.clear();
             plugin.getServer().getScheduler().cancelTask(TRACKERID);
             plugin.getServer().getScheduler().cancelTask(DETRACKERID);
         }

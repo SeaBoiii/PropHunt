@@ -1,6 +1,7 @@
 package me.tomski.utils;
 
 import me.tomski.prophunt.PropHunt;
+import me.tomski.prophunt.ShopSettings;
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.permission.Permission;
 import org.bukkit.plugin.RegisteredServiceProvider;
@@ -13,8 +14,20 @@ public class VaultUtils {
 
     public VaultUtils(PropHunt plugin) {
         this.plugin = plugin;
-        setupPermissions();
-        setupEconomy();
+        if (setupPermissions()) {
+            ShopSettings.enabled = true;
+            plugin.getLogger().info("Vault permissions found!");
+        } else {
+            ShopSettings.enabled = false;
+            plugin.getLogger().info("Vault permissions not found! Shop disabling!");
+        }
+        if (setupEconomy()) {
+            ShopSettings.enabled = true;
+            plugin.getLogger().info("Vault Economy found!");
+        } else {
+            ShopSettings.enabled = false;
+            plugin.getLogger().info("Vault Economy not found! Shop disabling!");
+        }
     }
 
     private boolean setupPermissions() {
