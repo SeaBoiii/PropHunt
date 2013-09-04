@@ -42,7 +42,9 @@ public class SolidBlockTracker implements Runnable {
                 continue;
             }
             if (solidBlocks.containsKey(s)) {
-                continue;
+                if (!solidBlocks.get(s).dead) {
+                    continue;
+                }
             }
             if (shouldBeSolid(movementTracker.get(s))) {
                 SolidBlock sb = null;

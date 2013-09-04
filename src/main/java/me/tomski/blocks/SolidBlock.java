@@ -26,6 +26,7 @@ public class SolidBlock {
     ProtocolManager pm;
     PacketContainer blockChange;
     private Disguise d;
+    public boolean dead = false;
 
     public SolidBlock(Location loc, Integer integer, byte dmg, Player p, ProtocolManager pm, PropHunt plugin) throws InvocationTargetException {
         this.loc = loc.clone();
@@ -75,6 +76,7 @@ public class SolidBlock {
     }
 
     public void unSetBlock(PropHunt plugin) throws InvocationTargetException {
+        dead = true;
         blockChange = pm.createPacket(Packets.Server.BLOCK_CHANGE);
         blockChange.getIntegers().
                 write(0, loc.getBlockX()).
