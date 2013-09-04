@@ -133,7 +133,7 @@ public class PropHunt extends JavaPlugin {
 
 
 
-        loadEconomySettings();
+        //loadEconomySettings();
 
 
         if (GameManager.automatic) {
@@ -145,7 +145,7 @@ public class PropHunt extends JavaPlugin {
         if (ShopSettings.usingVault) {
             vaultUtils = new VaultUtils(this);
         } else {
-            //TODO load sql currency!
+            //TODO load sql currency!                                                                                                                               q
         }
     }
 
