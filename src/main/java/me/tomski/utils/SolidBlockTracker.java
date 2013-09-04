@@ -76,6 +76,9 @@ public class SolidBlockTracker implements Runnable {
 
 
         for (String p : GameManager.hiders) {
+            if (GameManager.seekers.contains(p)) {
+                continue;
+            }
             if (Bukkit.getPlayer(p) == null) {
                 continue;
             }

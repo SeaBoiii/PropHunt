@@ -178,7 +178,11 @@ public class PropHuntListener implements Listener {
             public void run() {
                 for (Player p : PropHunt.dc.getOnlineDisguisedPlayers()) {
                     if (p.isOnline() && PropHunt.dc.isDisguised(p)) {
-                        PropHunt.dc.disguisePlayer(p, PropHunt.dc.getDisguise(p));
+                        if (GameManager.seekers.contains(p.getName())) {
+                            PropHunt.dc.undisguisePlayer(p);
+                        } else {
+                            PropHunt.dc.disguisePlayer(p, PropHunt.dc.getDisguise(p));
+                        }
                     }
                 }
             }
