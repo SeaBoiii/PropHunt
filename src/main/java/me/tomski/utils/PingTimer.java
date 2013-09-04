@@ -18,7 +18,6 @@ public class PingTimer implements Runnable {
         try {
             pinger.sendServerData();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }

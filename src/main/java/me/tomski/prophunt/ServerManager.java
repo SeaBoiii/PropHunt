@@ -42,7 +42,6 @@ public class ServerManager implements Listener {
                             try {
                                 ping.connectToServer(e.getPlayer(), BungeeSettings.hubname);
                             } catch (IOException e) {
-                                // TODO Auto-generated catch block
                                 e.printStackTrace();
                             }
                         }
