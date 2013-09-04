@@ -2,7 +2,7 @@ name: PropHunt
 main: me.tomski.prophunt.PropHunt
 version: 1.37
 depend: [DisguiseCraft,ProtocolLib]
-softdepend: [TabAPI,PropHuntSigns]
+softdepend: [TabAPI,PropHuntSigns, Vault]
 author: Tomski - Owner of Skicraft
 website: www.skicraft.enjin.com
 commands:

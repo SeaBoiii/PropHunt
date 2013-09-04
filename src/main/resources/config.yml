@@ -41,6 +41,7 @@ BungeeSettings:
   #As is in your bungee config.yml
   this-bungee-server-name: prophunt1
 ShopSettings:
+  use-shop: true
   currency-name: "Cookies"
   use-vault: false
   block-choices:

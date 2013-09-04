@@ -71,6 +71,10 @@
             <name>DisguiseCraft Repo</name>
             <url>http://build.yu8.me:8080/plugin/repository/everything/</url>
         </repository>
+        <repository>
+            <id>vault-repo</id>
+            <url>http://ci.herocraftonline.com/plugin/repository/everything</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -94,6 +98,13 @@
             <artifactId>TabAPI</artifactId>
             <version>0.1.15</version>
         </dependency>
+        <dependency>
+            <groupId>net.milkbowl.vault</groupId>
+            <artifactId>Vault</artifactId>
+            <version>LATEST</version>
+        </dependency>
+
+
     </dependencies>
 
     

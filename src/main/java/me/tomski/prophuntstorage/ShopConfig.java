@@ -29,6 +29,8 @@ public class ShopConfig {
 
     public ShopConfig(PropHunt plugin) {
         this.plugin = plugin;
+        getShopConfig().options().copyDefaults(true);
+        saveShopConfig();
     }
 
 
@@ -41,8 +43,6 @@ public class ShopConfig {
             customConfigFile = new File(plugin.getDataFolder(), "Shop.yml");
         }
         StorageFilef = YamlConfiguration.loadConfiguration(customConfigFile);
-
-        // Look for defaults in the jar
         InputStream defConfigStream = plugin.getResource("Shop.yml");
         if (defConfigStream != null) {
             YamlConfiguration defConfig = YamlConfiguration
