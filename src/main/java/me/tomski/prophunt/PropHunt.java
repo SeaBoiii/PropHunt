@@ -311,7 +311,6 @@ public class PropHunt extends JavaPlugin {
                             PropHuntMessaging.sendMessage(p, "You do not have permission to reload the config");
                             return true;
                         }
-                        reloadConfig();
                         loadConfigSettings();
                         loadBlockDisguises();
                         setupClasses();
