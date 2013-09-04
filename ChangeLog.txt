@@ -59,3 +59,4 @@
     - add scoreboardtranslate.yml for trasnlating the scoreboard
     - Change {kickalltohub} command to kickalltohub
     - Add ./ph shop   permission prophunt.command.shop
+    - Add vault utils

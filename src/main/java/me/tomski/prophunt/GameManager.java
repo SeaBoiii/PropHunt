@@ -305,7 +305,7 @@ public class GameManager {
 
     private void disguisePlayers(Arena a) {
         for (String s : hiders) {
-            if (seekers.contains(s)) {
+            if (seekers.contains(s) || firstSeeker.equals(s)) {
                 continue;
             }
             if (plugin.getServer().getPlayer(s) != null) {
@@ -318,14 +318,17 @@ public class GameManager {
     private void chooseSeekerAndSortPlayers() {
         int playersize = playersWaiting.size();
         hiders.clear();
+        seekers.clear();
         Random rnd = new Random();
         int randomnum = rnd.nextInt(playersize);
         String seeker = playersWaiting.get(randomnum);
         firstSeeker = seeker;
         seekers.add(seeker);
-
         playersWaiting.remove(seeker);
         for (String hider : playersWaiting) {
+            if (hider.equals(firstSeeker)) {
+                continue;
+            }
             hiders.add(hider);
         }
         playersWaiting.clear();
