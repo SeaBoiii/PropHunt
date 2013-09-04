@@ -50,10 +50,10 @@ public class PlayerManagement {
 
     @SuppressWarnings("deprecation")
     private static void saveArmour(Player p) {
-        ItemStack helm = p.getInventory().getHelmet();
-        ItemStack body = p.getInventory().getChestplate();
-        ItemStack legs = p.getInventory().getLeggings();
-        ItemStack boots = p.getInventory().getBoots();
+        ItemStack helm = p.getInventory().getHelmet().clone();
+        ItemStack body = p.getInventory().getChestplate().clone();
+        ItemStack legs = p.getInventory().getLeggings().clone();
+        ItemStack boots = p.getInventory().getBoots().clone();
         if (helm != null) {
             playerHelmet.put(p.getName(), helm);
         }
