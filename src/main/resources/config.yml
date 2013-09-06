@@ -41,7 +41,7 @@ BungeeSettings:
   #As is in your bungee config.yml
   this-bungee-server-name: prophunt1
 ShopSettings:
-  use-shop: true
+  use-shop: false
   currency-name: "Cookies"
   use-vault-for-currency: false
   block-choices:
@@ -53,7 +53,7 @@ DatabaseSettings:
     host: localhost
     database: minecraft
     username: root
-    password: bananas
+    password: minecraft
 block-disguises:
 - 1
 - 2

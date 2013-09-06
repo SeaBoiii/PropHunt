@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 
+import me.tomski.currency.SqlConnect;
 import me.tomski.language.ScoreboardTranslate;
 import me.tomski.prophuntstorage.ArenaStorage;
 import me.tomski.arenas.ArenaManager;
@@ -21,7 +22,6 @@ import me.tomski.shop.BlockChooser;
 import me.tomski.shop.MainShop;
 import me.tomski.utils.*;
 
-import net.minecraft.server.v1_6_R2.Scoreboard;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -57,6 +57,7 @@ public class PropHunt extends JavaPlugin {
     public BlockChooser blockChooser;
     public MainShop mainShop;
     public VaultUtils vaultUtils;
+    private SqlConnect SQL;
 
 
     public void onEnable() {
@@ -132,8 +133,7 @@ public class PropHunt extends JavaPlugin {
         }
 
 
-        //TODO load economy
-        //loadEconomySettings();
+        loadEconomySettings();
 
 
         if (GameManager.automatic) {
@@ -142,10 +142,14 @@ public class PropHunt extends JavaPlugin {
     }
 
     private void loadEconomySettings() {
+        if (!ShopSettings.enabled) {
+            getLogger().info("Not using shop!");
+            return;
+        }
         if (ShopSettings.usingVault) {
             vaultUtils = new VaultUtils(this);
         } else {
-            //TODO load sql currency!                                                                                                                               q
+            SQL = new SqlConnect(this);
         }
     }
 
@@ -284,6 +288,7 @@ public class PropHunt extends JavaPlugin {
             GameManager.chooseNewSeeker = getConfig().getBoolean("choose-new-seeker-if-original-dies");
         }
         if (getConfig().contains("ShopSettings")) {
+            ShopSettings.enabled = getConfig().getBoolean("ShopSettings.use-shop");
             ShopSettings.currencyName = getConfig().getString("ShopSettings.currency-name");
             ShopSettings.usingVault = getConfig().getBoolean("ShopSettings.use-vault-for-currency");
             ShopSettings.blockChoices = ShopSettings.generateBlockChoices(getConfig().getStringList("ShopSettings.block-choices"));
