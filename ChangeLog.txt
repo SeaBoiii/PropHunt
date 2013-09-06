@@ -60,3 +60,5 @@
     - Change {kickalltohub} command to kickalltohub
     - Add ./ph shop   permission prophunt.command.shop
     - Add vault utils
+    - Add sql utils
+    - Add Sql database management
