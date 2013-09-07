@@ -12,10 +12,7 @@ public class PlayerManagement {
 
     private static Map<String, ItemStack[]> playerInvents = new HashMap<String, ItemStack[]>();
     private static Map<String, Integer> playerXP = new HashMap<String, Integer>();
-    private static Map<String, ItemStack> playerHelmet = new HashMap<String, ItemStack>();
-    private static Map<String, ItemStack> playerBody = new HashMap<String, ItemStack>();
-    private static Map<String, ItemStack> playerLegs = new HashMap<String, ItemStack>();
-    private static Map<String, ItemStack> playerBoots = new HashMap<String, ItemStack>();
+    private static Map<String, ItemStack[]> playerArmour = new HashMap<String, ItemStack[]>();
 
 
     public static void gameStartPlayer(Player p) {
@@ -34,42 +31,14 @@ public class PlayerManagement {
         if (playerXP.containsKey(p.getName())) {
             playerXP.remove(p.getName());
         }
-        if (playerHelmet.containsKey(p.getName())) {
-            playerHelmet.remove(p.getName());
-        }
-        if (playerBody.containsKey(p.getName())) {
-            playerBody.remove(p.getName());
-        }
-        if (playerLegs.containsKey(p.getName())) {
-            playerLegs.remove(p.getName());
-        }
-        if (playerBoots.containsKey(p.getName())) {
-            playerBoots.remove(p.getName());
+        if (playerArmour.containsKey(p.getName())) {
+            playerArmour.remove(p.getName());
         }
     }
 
     @SuppressWarnings("deprecation")
     private static void saveArmour(Player p) {
-        ItemStack helm = p.getInventory().getHelmet();
-        ItemStack body = p.getInventory().getChestplate();
-        ItemStack legs = p.getInventory().getLeggings();
-        ItemStack boots = p.getInventory().getBoots();
-        if (helm != null) {
-            playerHelmet.put(p.getName(), helm.clone());
-        }
-        if (body != null) {
-            playerBody.put(p.getName(), body.clone());
-        }
-        if (legs != null) {
-            playerLegs.put(p.getName(), legs.clone());
-        }
-        if (boots != null) {
-            playerBoots.put(p.getName(), boots.clone());
-        }
-        p.getInventory().setHelmet(null);
-        p.getInventory().setChestplate(null);
-        p.getInventory().setLeggings(null);
-        p.getInventory().setBoots(null);
+
         p.updateInventory();
     }
 
@@ -82,14 +51,7 @@ public class PlayerManagement {
 
     @SuppressWarnings("deprecation")
     private static void saveInvent(Player p) {
-        Inventory inv = p.getInventory();
-        ItemStack[] itemarray = new ItemStack[inv.getSize()];
-        int iter = 0;
-        for (ItemStack item : inv.getContents()) {
-            itemarray[iter] = item;
-            iter++;
-        }
-        playerInvents.put(p.getName(), itemarray);
+        playerInvents.put(p.getName(), p.getInventory().getContents());
         p.getInventory().clear();
         p.updateInventory();
     }
@@ -112,20 +74,12 @@ public class PlayerManagement {
         restoreInvent(p);
         removeFromMaps(p);
         restoreArmour(p);
-
     }
 
     @SuppressWarnings("deprecation")
     private static void restoreInvent(Player p) {
         if (playerInvents.containsKey(p.getName())) {
-            p.getInventory().clear();
-            ItemStack[] oldinv = playerInvents.get(p.getName());
-            for (ItemStack i : oldinv) {
-                if (i == null) {
-                    continue;
-                }
-                p.getInventory().addItem(i);
-            }
+            p.getInventory().setContents(playerInvents.get(p.getName()));
             p.updateInventory();
         }
 
@@ -148,20 +102,9 @@ public class PlayerManagement {
         p.getInventory().setChestplate(null);
         p.getInventory().setLeggings(null);
         p.getInventory().setBoots(null);
+        p.getInventory().setArmorContents(playerArmour.get(p.getName()));
         for (PotionEffect pe : p.getActivePotionEffects()) {
             p.removePotionEffect(pe.getType());
-        }
-        if (playerHelmet.containsKey(p.getName())) {
-            p.getInventory().setHelmet(playerHelmet.get(p.getName()));
-        }
-        if (playerBody.containsKey(p.getName())) {
-            p.getInventory().setChestplate(playerBody.get(p.getName()));
-        }
-        if (playerLegs.containsKey(p.getName())) {
-            p.getInventory().setLeggings(playerLegs.get(p.getName()));
-        }
-        if (playerBoots.containsKey(p.getName())) {
-            p.getInventory().setBoots(playerBoots.get(p.getName()));
         }
         p.updateInventory();
     }
