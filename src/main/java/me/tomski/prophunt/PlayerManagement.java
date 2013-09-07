@@ -70,9 +70,9 @@ public class PlayerManagement {
 
     public static void gameRestorePlayer(Player p) {
         restoreXp(p);
-        removeFromMaps(p);
         restoreInvent(p);
         restoreArmour(p);
+        removeFromMaps(p);
     }
 
     @SuppressWarnings("deprecation")
@@ -80,6 +80,7 @@ public class PlayerManagement {
         if (playerInvents.containsKey(p.getName())) {
             p.getInventory().setContents(playerInvents.get(p.getName()));
             p.getInventory();
+            System.out.println("Inventory restored");
         }
     }
 
@@ -98,9 +99,7 @@ public class PlayerManagement {
     private static void restoreArmour(Player p) {
         p.getInventory().setArmorContents(playerArmour.get(p.getName()));
         p.updateInventory();
-        for (PotionEffect pe : p.getActivePotionEffects()) {
-            p.removePotionEffect(pe.getType());
-        }
+        System.out.println("Armour restored");
     }
 
 }
