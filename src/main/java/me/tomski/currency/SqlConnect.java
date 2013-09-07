@@ -1,6 +1,8 @@
 package me.tomski.currency;
 
+import me.tomski.enums.EconomyType;
 import me.tomski.prophunt.PropHunt;
+import me.tomski.prophunt.ShopSettings;
 
 import java.sql.*;
 
@@ -16,6 +18,7 @@ public class SqlConnect {
         try {
             testConnection();
             enabled = true;
+            ShopSettings.economyType = EconomyType.VAULT;
         } catch (SQLException e) {
             plugin.getLogger().info("Sql not able to connect! Disabling Sql currency!");
             enabled = false;

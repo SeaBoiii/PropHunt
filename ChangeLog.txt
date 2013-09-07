@@ -63,3 +63,4 @@
     - Add sql utils
     - Add Sql database management
     - Fix inventory! Far too long....
+    - Add shop messages to language.yml

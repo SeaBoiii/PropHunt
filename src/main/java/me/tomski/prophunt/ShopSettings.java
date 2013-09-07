@@ -1,6 +1,7 @@
 package me.tomski.prophunt;
 
 
+import me.tomski.enums.EconomyType;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -15,6 +16,7 @@ public class ShopSettings {
     public static String currencyName;
     public static boolean usingVault;
     public static boolean enabled;
+    public static EconomyType economyType;
 
     public static List<ItemStack> generateBlockChoices(List<String> stringList) {
         List<ItemStack> stacks = new ArrayList<ItemStack>();

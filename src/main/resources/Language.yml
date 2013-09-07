@@ -63,6 +63,9 @@ disguise_message: "You have been disguised as a "
 shop_chosen_disguise: "You have chosen your disguise: "
 no_block_choice_permission: "You dont have permission for that disguise"
 not_in_lobby: "You are not in the lobby"
+already_purchased_item: "You have already bought that item"
+not_enough_currency: "You dont have enough for that item"
+purchase_complete: "You have just bought: "
 
 # setup
 seeker_spawn_set: "Seeker spawn Set"

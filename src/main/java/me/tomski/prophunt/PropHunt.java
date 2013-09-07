@@ -57,7 +57,7 @@ public class PropHunt extends JavaPlugin {
     public BlockChooser blockChooser;
     public MainShop mainShop;
     public VaultUtils vaultUtils;
-    private SqlConnect SQL;
+    public SqlConnect SQL;
 
 
     public void onEnable() {

@@ -3,6 +3,8 @@ package me.tomski.prophuntstorage;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 
 import me.tomski.arenas.Arena;
@@ -14,6 +16,7 @@ import me.tomski.prophunt.PropHunt;
 import me.tomski.arenas.ArenaConfig;
 import me.tomski.arenas.ArenaManager;
 
+import me.tomski.shop.ShopItem;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -26,6 +29,8 @@ public class ShopConfig {
     public FileConfiguration StorageFilef = null;
     private File customConfigFile = null;
     private PropHunt plugin;
+
+    public List<ShopItem> shopItems = new ArrayList<ShopItem>();
 
     public ShopConfig(PropHunt plugin) {
         this.plugin = plugin;

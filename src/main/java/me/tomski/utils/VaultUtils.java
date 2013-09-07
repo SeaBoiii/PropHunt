@@ -1,5 +1,6 @@
 package me.tomski.utils;
 
+import me.tomski.enums.EconomyType;
 import me.tomski.prophunt.PropHunt;
 import me.tomski.prophunt.ShopSettings;
 import net.milkbowl.vault.economy.Economy;
@@ -8,8 +9,8 @@ import org.bukkit.plugin.RegisteredServiceProvider;
 
 public class VaultUtils {
 
-    public static Permission permission = null;
-    public static Economy economy = null;
+    public Permission permission = null;
+    public Economy economy = null;
     private PropHunt plugin;
 
     public VaultUtils(PropHunt plugin) {
@@ -24,6 +25,7 @@ public class VaultUtils {
         if (setupEconomy()) {
             ShopSettings.enabled = true;
             plugin.getLogger().info("Vault Economy found!");
+            ShopSettings.economyType = EconomyType.VAULT;
         } else {
             ShopSettings.enabled = false;
             plugin.getLogger().info("Vault Economy not found! Shop disabling!");
