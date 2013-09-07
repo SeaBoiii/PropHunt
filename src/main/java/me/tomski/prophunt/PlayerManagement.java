@@ -21,7 +21,6 @@ public class PlayerManagement {
         healPlayer(p);
         saveInvent(p);
         saveXp(p);
-
     }
 
     private static void removeFromMaps(Player p) {
@@ -38,7 +37,7 @@ public class PlayerManagement {
 
     @SuppressWarnings("deprecation")
     private static void saveArmour(Player p) {
-
+        playerArmour.put(p.getName(), p.getInventory().getArmorContents());
         p.updateInventory();
     }
 
@@ -74,16 +73,14 @@ public class PlayerManagement {
         removeFromMaps(p);
         restoreInvent(p);
         restoreArmour(p);
-        p.updateInventory();
-
     }
 
     @SuppressWarnings("deprecation")
     private static void restoreInvent(Player p) {
         if (playerInvents.containsKey(p.getName())) {
             p.getInventory().setContents(playerInvents.get(p.getName()));
+            p.getInventory();
         }
-
     }
 
     @SuppressWarnings("deprecation")
@@ -100,6 +97,7 @@ public class PlayerManagement {
     @SuppressWarnings("deprecation")
     private static void restoreArmour(Player p) {
         p.getInventory().setArmorContents(playerArmour.get(p.getName()));
+        p.updateInventory();
         for (PotionEffect pe : p.getActivePotionEffects()) {
             p.removePotionEffect(pe.getType());
         }
