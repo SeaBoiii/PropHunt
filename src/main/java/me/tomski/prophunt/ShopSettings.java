@@ -2,47 +2,128 @@ package me.tomski.prophunt;
 
 
 import me.tomski.enums.EconomyType;
+import me.tomski.prophuntstorage.ShopConfig;
+import me.tomski.shop.ShopItem;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class ShopSettings {
 
-    public static List<ItemStack> blockChoices = new ArrayList<ItemStack>();
+    public static List<ShopItem> blockChoices = new ArrayList<ShopItem>();
+    public static List<ShopItem> itemChoices = new ArrayList<ShopItem>();
+
     public static String currencyName;
     public static boolean usingVault;
     public static boolean enabled;
     public static EconomyType economyType;
+    private static PropHunt plugin;
 
-    public static List<ItemStack> generateBlockChoices(List<String> stringList) {
-        List<ItemStack> stacks = new ArrayList<ItemStack>();
-        for (String itemString : stringList) {
-            if (itemString.split(":").length == 2) {
-                stacks.add(new ItemStack(Integer.valueOf(itemString.split(":")[0]), 1, Byte.valueOf(itemString.split(":")[1])));
-            } else if (itemString.split(":").length == 1) {
-                stacks.add(new ItemStack(Material.getMaterial(Integer.valueOf(itemString)), 1));
+    public ShopSettings(PropHunt plugin) {
+        this.plugin = plugin;
+    }
+
+    public static List<ShopItem> generateBlockChoices(PropHunt plugin, ShopConfig shopConfig) {
+        String path = "Disguises";
+        Set<String> keys = shopConfig.getShopConfig().getConfigurationSection(path).getKeys(false);
+        for (String key : keys) {
+            String name = shopConfig.getShopConfig().getString(path + "." + key + ".Name");
+            String Id = shopConfig.getShopConfig().getString(path + "." + key + ".Id");
+            double cost = shopConfig.getShopConfig().getDouble(path + "." + key + ".Cost");
+            ItemStack stack = parseStringToStack(plugin, Id);
+            if (stack != null) {
+                ShopItem item = new ShopItem(plugin, stack, name, (int) cost, getStackPermission(stack));
+                blockChoices.add(item);
+            } else {
+                plugin.getLogger().warning("DISABLING SHOP, error with item : " + name);
+                return null;
             }
         }
-        return stacks;
+        return null;
     }
 
-    public static List<ItemStack> cleanStacks() {
-        List<ItemStack> newStacks = new ArrayList<ItemStack>();
-        for (ItemStack s : blockChoices) {
-            ItemMeta im = s.getItemMeta();
-            String name = s.getType().toString().toLowerCase().replaceAll("_", " ");
-            String finalName = name.substring(0, 1).toUpperCase() + name.substring(1);
-            im.setDisplayName(ChatColor.BOLD + finalName);
-            List<String> lore = new ArrayList<String>();
-            lore.add(ChatColor.GOLD + "Click to choose the " + ChatColor.RESET + im.getDisplayName() + ChatColor.RESET + ChatColor.GOLD + " disguise!");
-            im.setLore(lore);
-            s.setItemMeta(im);
-            newStacks.add(s);
+
+    public static List<ShopItem> generateItemChoices(PropHunt plugin, ShopConfig shopConfig) {
+        String path = "Items";
+        Set<String> keys = shopConfig.getShopConfig().getConfigurationSection(path).getKeys(false);
+        for (String key : keys) {
+            String name = shopConfig.getShopConfig().getString(path + "." + key + ".Name");
+            String Id = shopConfig.getShopConfig().getString(path + "." + key + ".Id");
+            double cost = shopConfig.getShopConfig().getDouble(path + "." + key + ".Cost");
+            ItemStack stack = parseStringToStack(plugin, Id);
+            if (stack != null) {
+                ShopItem item = new ShopItem(plugin, stack, name, (int) cost, getStackPermission(stack));
+                blockChoices.add(item);
+            } else {
+                plugin.getLogger().warning("DISABLING SHOP, error with item : " + name);
+                return null;
+            }
         }
-        return newStacks;
+        return null;
     }
+
+    public static ItemStack getCustomItem(String s) {
+        ItemStack stack;
+        String mat = plugin.shopConfig.getShopConfig().getString("PropHuntItems." + s);
+        if (mat.split(":").length == 2) {
+            int id = Integer.valueOf(s.split(":")[0]);
+            int damage = Integer.valueOf(s.split(":")[1]);
+            stack = new ItemStack(id, 1, (byte) damage);
+            return stack;
+        } else if (mat.split(":").length == 1) {
+            if (Material.getMaterial(Integer.valueOf(s)) != null) {
+                stack = new ItemStack(Material.getMaterial(Integer.valueOf(s)), 1);
+                return stack;
+            }
+        } else {
+            plugin.getLogger().warning("Error with Custom item: " + s);
+            return null;
+        }
+        return null;
+    }
+
+    public static void loadShopItems(PropHunt plugin) {
+        blockChoices = generateBlockChoices(plugin, plugin.shopConfig);
+        if (blockChoices == null)
+            enabled = false;
+        itemChoices = generateItemChoices(plugin, plugin.shopConfig);
+        if (itemChoices == null) {
+            enabled = false;
+        }
+    }
+
+    private static String getStackPermission(ItemStack currentItem) {
+        if (currentItem.getData().getData() == 0) {
+            return "prophunt.blockchooser." + currentItem.getTypeId();
+        } else {
+            return "prophunt.blockchooser." + currentItem.getTypeId() + "-" + currentItem.getData().getData();
+        }
+    }
+
+
+    private static ItemStack parseStringToStack(PropHunt plugin, String s) {
+        ItemStack stack;
+        if (s.split(":").length == 2) {
+            int id = Integer.valueOf(s.split(":")[0]);
+            int damage = Integer.valueOf(s.split(":")[1]);
+            stack = new ItemStack(id, 1, (byte) damage);
+            return stack;
+        } else if (s.split(":").length == 1) {
+            if (Material.getMaterial(Integer.valueOf(s)) != null) {
+                stack = new ItemStack(Material.getMaterial(Integer.valueOf(s)), 1);
+                return stack;
+            }
+        } else {
+            plugin.getLogger().warning("Error with shop item with ID: " + s);
+            return null;
+        }
+        return null;
+    }
+
 }

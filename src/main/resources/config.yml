@@ -54,16 +54,6 @@ DatabaseSettings:
     database: minecraft
     username: root
     password: minecraft
-block-disguises:
-- 1
-- 2
-- 3
-- 5
-- 6
-- 7
-- 81
-- 57
-- 71
 HiderClass:
   Inventory: 283:1,357:20
   Effects: 1:20000:1,8:20000:1

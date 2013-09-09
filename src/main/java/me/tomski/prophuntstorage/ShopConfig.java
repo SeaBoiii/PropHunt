@@ -30,17 +30,10 @@ public class ShopConfig {
     private File customConfigFile = null;
     private PropHunt plugin;
 
-    public List<ShopItem> shopItems = new ArrayList<ShopItem>();
-
     public ShopConfig(PropHunt plugin) {
         this.plugin = plugin;
         getShopConfig().options().copyDefaults(true);
         saveShopConfig();
-    }
-
-
-    public void loadData() {
-
     }
 
     public void reloadShopConfig() {

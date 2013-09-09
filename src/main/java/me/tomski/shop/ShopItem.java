@@ -4,8 +4,13 @@ import me.tomski.language.MessageBank;
 import me.tomski.prophunt.PropHunt;
 import me.tomski.prophunt.ShopSettings;
 import me.tomski.utils.PropHuntMessaging;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+
+import java.util.List;
 
 public class ShopItem {
 
@@ -13,6 +18,7 @@ public class ShopItem {
     String itemName;
     int itemCost;
     String itemPermission;
+    List<String> description;
 
     private PropHunt plugin;
 
@@ -23,6 +29,27 @@ public class ShopItem {
         this.itemName = name;
         this.itemCost = cost;
         this.itemPermission = permission;
+        this.itemStack = makeItem();
+    }
+
+    public void addToInventory(Inventory i, Player p) {
+        if (p.hasPermission(itemPermission)) {
+            description.clear();
+            description.add(ChatColor.GRAY + "Already purchased!");
+        } else {
+            description.clear();
+            description.add(ChatColor.GOLD + "Cost: " + itemCost);
+        }
+        i.addItem(itemStack.clone());
+    }
+
+    private ItemStack makeItem() {
+        ItemMeta im = itemStack.getItemMeta();
+        String name = itemStack.getType().name().toLowerCase().replaceAll("_", " ");
+        String finalName = name.substring(0, 1).toUpperCase() + name.substring(1);
+        im.setDisplayName(ChatColor.GOLD + name);
+        itemStack.setItemMeta(im);
+        return itemStack;
     }
 
     public boolean buyItem(Player p) {
@@ -59,5 +86,9 @@ public class ShopItem {
                 }
         }
         return false;
+    }
+
+    public ItemStack getItem() {
+        return itemStack;
     }
 }

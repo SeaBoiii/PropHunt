@@ -14,7 +14,6 @@ Disguises:
 Items:
     1:
       Name: First Seeker
-      Description: Become the first seeker!
       Id: 339
       Cost: 250
 ## Manage all ids for special items here, set to 0 if you dont want to use

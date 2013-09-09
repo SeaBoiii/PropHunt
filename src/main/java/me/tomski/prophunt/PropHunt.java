@@ -18,8 +18,10 @@ import me.tomski.listeners.SetupListener;
 import me.tomski.blocks.ProtocolTask;
 import me.tomski.classes.SeekerClass;
 import me.tomski.listeners.PropHuntListener;
+import me.tomski.prophuntstorage.ShopConfig;
 import me.tomski.shop.BlockChooser;
 import me.tomski.shop.MainShop;
+import me.tomski.shop.ShopManager;
 import me.tomski.utils.*;
 
 import org.bukkit.Material;
@@ -54,11 +56,11 @@ public class PropHunt extends JavaPlugin {
     public ScoreboardTranslate ST;
     public SideBarStats SBS;
     public static boolean usingTABAPI = false;
-    public BlockChooser blockChooser;
-    public MainShop mainShop;
     public VaultUtils vaultUtils;
     public SqlConnect SQL;
-
+    public ShopConfig shopConfig;
+    private ShopSettings shopSettings;
+    private ShopManager shopManager;
 
     public void onEnable() {
         getConfig().options().copyDefaults(true);
@@ -96,7 +98,7 @@ public class PropHunt extends JavaPlugin {
         dc = DisguiseCraft.getAPI();
         dm = new DisguiseManager(this);
 
-        mainShop = new MainShop(this);
+        shopManager = new ShopManager(this);
         loadProtocolManager();
         ProtocolTask pt = new ProtocolTask(this);
         pt.initProtocol();
@@ -119,9 +121,6 @@ public class PropHunt extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PropHuntListener(this, GM), this);
         getServer().getPluginManager().registerEvents(new SetupListener(this), this);
         getServer().getPluginManager().registerEvents(new ServerManager(this), this);
-        getServer().getPluginManager().registerEvents(mainShop, this);
-        blockChooser = new BlockChooser(this);
-        getServer().getPluginManager().registerEvents(blockChooser, this);
 
         usingCustomTab();
 
@@ -146,6 +145,7 @@ public class PropHunt extends JavaPlugin {
             getLogger().info("Not using shop!");
             return;
         }
+        shopConfig = new ShopConfig(this);
         if (ShopSettings.usingVault) {
             vaultUtils = new VaultUtils(this);
         } else {
@@ -194,6 +194,10 @@ public class PropHunt extends JavaPlugin {
             return false;
         }
 
+    }
+
+    public ShopManager getShopManager() {
+        return shopManager;
     }
 
     private void usingCustomTab() {
@@ -291,8 +295,10 @@ public class PropHunt extends JavaPlugin {
             ShopSettings.enabled = getConfig().getBoolean("ShopSettings.use-shop");
             ShopSettings.currencyName = getConfig().getString("ShopSettings.currency-name");
             ShopSettings.usingVault = getConfig().getBoolean("ShopSettings.use-vault-for-currency");
-            ShopSettings.blockChoices = ShopSettings.generateBlockChoices(getConfig().getStringList("ShopSettings.block-choices"));
-            ShopSettings.blockChoices = ShopSettings.cleanStacks();
+            if (ShopSettings.enabled) {
+                shopSettings = new ShopSettings(this);
+                shopSettings.loadShopItems(this);
+            }
         }
         if (getConfig().contains("ServerSettings")) {
             ServerManager.forceMOTD = getConfig().getBoolean("ServerSettings.force-motd-prophunt");
@@ -420,7 +426,7 @@ public class PropHunt extends JavaPlugin {
                             PropHuntMessaging.sendMessage(p, "You do not have the permission to use the shop");
                             return true;
                         }
-                        mainShop.openMainShop(p);
+                        getShopManager().getMainShop().openMainShop(p);
                     }
                     if( args[0].equalsIgnoreCase("chooser")) {
                         if (!sender.hasPermission("prophunt.command.chooser")) {
@@ -428,7 +434,7 @@ public class PropHunt extends JavaPlugin {
                             return true;
                         }
                         if (GameManager.isHosting && GameManager.playersWaiting.contains(p.getName())) {
-                            blockChooser.openBlockShop(p);
+                            getShopManager().getBlockChooser().openBlockShop(p);
                         }
                     }
                     if (args[0].equalsIgnoreCase("debug") && sender.isOp()) {
