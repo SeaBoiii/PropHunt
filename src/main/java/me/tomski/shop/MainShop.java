@@ -3,6 +3,7 @@ package me.tomski.shop;
 
 import me.tomski.prophunt.PropHunt;
 import me.tomski.prophunt.ShopSettings;
+import me.tomski.utils.VaultUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -41,7 +42,7 @@ public class MainShop implements Listener {
 
 
         ItemStack customDisguises = new ItemStack(Material.GOLD_BLOCK);
-        ItemMeta disguiseMeta = customItems.getItemMeta();
+        ItemMeta disguiseMeta = customDisguises.getItemMeta();
         disguiseMeta.setDisplayName(ChatColor.DARK_GREEN + "PropHunt Disguises");
         List<String> disLore = new ArrayList<String>();
         disLore.add(ChatColor.GOLD + "Buy your PropHunt disguises here!");
@@ -50,7 +51,7 @@ public class MainShop implements Listener {
 
 
         ItemStack placeHolder = new ItemStack(Material.ENDER_CHEST);
-        ItemMeta placeMeta = customItems.getItemMeta();
+        ItemMeta placeMeta = placeHolder.getItemMeta();
         placeMeta.setDisplayName(ChatColor.DARK_RED + "Disguise Chooser");
         List<String> placeLore = new ArrayList<String>();
         placeLore.add(ChatColor.GOLD + "Use to select your disguises!");
@@ -59,7 +60,7 @@ public class MainShop implements Listener {
         placeHolder.setItemMeta(placeMeta);
 
         ItemStack loadout = new ItemStack(Material.CHEST);
-        ItemMeta loadMeta = customItems.getItemMeta();
+        ItemMeta loadMeta = loadout.getItemMeta();
         loadMeta.setDisplayName(ChatColor.DARK_RED + "Loadout Chooser");
         List<String> loadLore = new ArrayList<String>();
         loadLore.add(ChatColor.GOLD + "Use to select your loadout!");
@@ -68,10 +69,10 @@ public class MainShop implements Listener {
         loadout.setItemMeta(loadMeta);
 
         ItemStack currency = new ItemStack(Material.EMERALD);
-        ItemMeta currencyMeta = customItems.getItemMeta();
+        ItemMeta currencyMeta = currency.getItemMeta();
         currencyMeta.setDisplayName(ChatColor.GOLD + "Your " + ShopSettings.currencyName);
         List<String> currencyLore = new ArrayList<String>();
-        currencyLore.add(ChatColor.GREEN + "509");
+        currencyLore.add(ChatColor.GREEN + "" + getCurrencyBalance(p));
         currencyMeta.setLore(currencyLore);
         currency.setItemMeta(currencyMeta);
 
@@ -115,6 +116,16 @@ public class MainShop implements Listener {
         if (inMenu.contains(e.getPlayer())) {
             inMenu.remove(e.getPlayer());
         }
+    }
+
+    public int getCurrencyBalance(Player p) {
+        switch (ShopSettings.economyType) {
+            case PROPHUNT:
+                return plugin.SQL.getCredits(p.getName());
+            case VAULT:
+                return (int) plugin.vaultUtils.economy.getBalance(p.getName());
+        }
+        return 0;
     }
 
 }

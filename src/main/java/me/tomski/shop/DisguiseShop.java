@@ -34,6 +34,7 @@ public class DisguiseShop implements Listener {
         for (ShopItem item : ShopSettings.blockChoices) {
           item.addToInventory(i, p);
         }
+        addCurrencyItem(i, p);
         p.openInventory(i);
         inMenu.add(p);
     }
@@ -61,8 +62,30 @@ public class DisguiseShop implements Listener {
         }
     }
 
+    private void addCurrencyItem(Inventory i, Player p) {
+        ItemStack currency = new ItemStack(Material.EMERALD);
+        ItemMeta currencyMeta = currency.getItemMeta();
+        currencyMeta.setDisplayName(ChatColor.GOLD + "Your " + ShopSettings.currencyName);
+        List<String> currencyLore = new ArrayList<String>();
+        currencyLore.add(ChatColor.GREEN + "" + getCurrencyBalance(p));
+        currencyMeta.setLore(currencyLore);
+        currency.setItemMeta(currencyMeta);
+        i.setItem(i.getSize(), currency);
+    }
+
+
     private int getShopSize(int n) {
         return (int) Math.ceil(n / 9.0) * 9;
+    }
+
+    public int getCurrencyBalance(Player p) {
+        switch (ShopSettings.economyType) {
+            case PROPHUNT:
+                return plugin.SQL.getCredits(p.getName());
+            case VAULT:
+                return (int) plugin.vaultUtils.economy.getBalance(p.getName());
+        }
+        return 0;
     }
 
 }
