@@ -32,7 +32,7 @@ public class DisguiseShop implements Listener {
     public void openDisguiseShop(Player p) {
         Inventory i = Bukkit.createInventory(p, getShopSize(ShopSettings.blockChoices.size()), ChatColor.DARK_AQUA + "Disguise Shop");
         for (ShopItem item : ShopSettings.blockChoices) {
-          item.addToInventory(i, p);
+            item.addToInventory(i, p);
         }
         addCurrencyItem(i, p);
         p.openInventory(i);
@@ -46,7 +46,7 @@ public class DisguiseShop implements Listener {
                 for (ShopItem item : ShopSettings.blockChoices) {
                     if (item.itemStack.getType().equals(e.getCurrentItem().getType())) {
                         if (item.itemStack.getData().getData() == e.getCurrentItem().getData().getData()) {
-                            item.buyItem((Player)e.getWhoClicked());
+                            item.buyItem((Player) e.getWhoClicked());
                             e.getView().close();
                         }
                     }

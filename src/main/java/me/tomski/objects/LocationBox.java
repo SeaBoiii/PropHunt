@@ -24,7 +24,7 @@ public class LocationBox {
         double z = location.getZ();
         float yaw = location.getYaw();
         float pitch = location.getPitch();
-        return worldName+"|"+x+"|"+y+"|"+z+"|"+yaw+"|"+pitch;
+        return worldName + "|" + x + "|" + y + "|" + z + "|" + yaw + "|" + pitch;
     }
 
     public Location unBox() {

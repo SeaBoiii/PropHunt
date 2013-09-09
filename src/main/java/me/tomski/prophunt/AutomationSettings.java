@@ -36,7 +36,7 @@ public class AutomationSettings {
                             }
                         }
                     } else if (command.equalsIgnoreCase("stop")) {
-                        plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable(){
+                        plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
                             @Override
                             public void run() {
                                 plugin.getServer().shutdown();

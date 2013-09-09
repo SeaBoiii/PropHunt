@@ -46,7 +46,7 @@ public class ItemShop implements Listener {
                 for (ShopItem item : ShopSettings.itemChoices) {
                     if (item.itemStack.getType().equals(e.getCurrentItem().getType())) {
                         if (item.itemStack.getData().getData() == e.getCurrentItem().getData().getData()) {
-                            item.buyItem((Player)e.getWhoClicked());
+                            item.buyItem((Player) e.getWhoClicked());
                             e.getView().close();
                         }
                     }

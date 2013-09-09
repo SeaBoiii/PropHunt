@@ -100,7 +100,7 @@ public class MainShop implements Listener {
                     } else if (e.getCurrentItem().getType().equals(Material.DIAMOND_SWORD)) {
                         e.getView().close();
                         plugin.getShopManager().getItemShop().openMainShop((Player) e.getWhoClicked());
-                    } else if (e.getCurrentItem().getType().equals(Material.CHEST)){
+                    } else if (e.getCurrentItem().getType().equals(Material.CHEST)) {
                         e.getView().close();
                         plugin.getShopManager().getLoadoutChooser().openBlockShop((Player) e.getWhoClicked());
                     } else {

@@ -84,7 +84,7 @@ public class ScoreboardTranslate {
             maxLength(solid_Time_Translate);
         }
         for (String keyy : getTranslateFile().getConfigurationSection("Disguise-Translations").getKeys(false)) {
-            disguise_Translations.put(keyy, maxLength(getTranslateFile().getString("Disguise-Translations."+keyy)));
+            disguise_Translations.put(keyy, maxLength(getTranslateFile().getString("Disguise-Translations." + keyy)));
         }
 
     }

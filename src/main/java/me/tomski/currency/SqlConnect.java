@@ -72,13 +72,11 @@ public class SqlConnect {
             Connection conn = DriverManager.getConnection(settings.getUrl(), settings.getUsername(), settings.getPass()); //Creates the connection
             Statement st = conn.createStatement();
             st.executeUpdate("INSERT INTO PropHuntCurrency (playerUniqueId, `playerName`, credits) " +
-                    "VALUES ("+0+", '"+playerName+"', "+amount+")" +
-                    " ON DUPLICATE KEY UPDATE playerName='"+playerName+"', credits="+amount+"");
+                    "VALUES (" + 0 + ", '" + playerName + "', " + amount + ")" +
+                    " ON DUPLICATE KEY UPDATE playerName='" + playerName + "', credits=" + amount + "");
             conn.close();
-        }
-
-        catch (SQLException ex) {
-            plugin.getLogger().info(""+ex);
+        } catch (SQLException ex) {
+            plugin.getLogger().info("" + ex);
         }
 
     }

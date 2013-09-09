@@ -25,7 +25,7 @@ public class SetupListener implements Listener {
     @EventHandler
     public void onBlockPlace(PlayerInteractEvent e) {
         if (ArenaManager.setupMap.containsKey(e.getPlayer().getName())) {
-            if (e.getItem()== null) {
+            if (e.getItem() == null) {
                 return;
             }
             if (e.getItem().getTypeId() == 35) {

@@ -145,6 +145,8 @@ public class PropHunt extends JavaPlugin {
             getLogger().info("Not using shop!");
             return;
         }
+        new ShopSettings(this);
+        ShopSettings.loadShopItems(this);
         shopConfig = new ShopConfig(this);
         if (ShopSettings.usingVault) {
             vaultUtils = new VaultUtils(this);
@@ -295,11 +297,6 @@ public class PropHunt extends JavaPlugin {
             ShopSettings.enabled = getConfig().getBoolean("ShopSettings.use-shop");
             ShopSettings.usingVault = getConfig().getBoolean("ShopSettings.use-vault-for-currency");
             ShopSettings.currencyName = getConfig().getString("ShopSettings.currency-name");
-
-            if (ShopSettings.enabled) {
-                shopSettings = new ShopSettings(this);
-                shopSettings.loadShopItems(this);
-            }
         }
         if (getConfig().contains("ServerSettings")) {
             ServerManager.forceMOTD = getConfig().getBoolean("ServerSettings.force-motd-prophunt");
@@ -422,14 +419,14 @@ public class PropHunt extends JavaPlugin {
                         PropHuntMessaging.sendGameStatus(p);
                         return true;
                     }
-                    if( args[0].equalsIgnoreCase("shop")) {
+                    if (args[0].equalsIgnoreCase("shop")) {
                         if (!sender.hasPermission("prophunt.command.shop")) {
                             PropHuntMessaging.sendMessage(p, "You do not have the permission to use the shop");
                             return true;
                         }
                         getShopManager().getMainShop().openMainShop(p);
                     }
-                    if( args[0].equalsIgnoreCase("chooser")) {
+                    if (args[0].equalsIgnoreCase("chooser")) {
                         if (!sender.hasPermission("prophunt.command.chooser")) {
                             PropHuntMessaging.sendMessage(p, "You do not have the permission to use this chooser");
                             return true;

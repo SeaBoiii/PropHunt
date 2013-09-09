@@ -11,7 +11,6 @@ public enum CustomItem {
     FORCE_HIDER("Force Hider", getCfgItem("ForceHider"));
 
 
-
     private String itemName;
     private ItemStack item;
 

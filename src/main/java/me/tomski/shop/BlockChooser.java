@@ -54,7 +54,7 @@ public class BlockChooser implements Listener {
                     PropHuntMessaging.sendMessage((Player) e.getWhoClicked(), MessageBank.NO_BLOCK_CHOICE_PERMISSION.getMsg());
                     return;
                 }
-                if ( e.getCurrentItem().getType().equals(Material.AIR)) {
+                if (e.getCurrentItem().getType().equals(Material.AIR)) {
                     return;
                 }
                 DisguiseManager.preChosenDisguise.put((Player) e.getWhoClicked(), parseItemToDisguise(e.getCurrentItem()));
