@@ -7,5 +7,5 @@ public enum Reason {
     SEEKERWON,
     HIDERSWON,
     HOSTENDED,
-    TIME;
+    TIME
 }
