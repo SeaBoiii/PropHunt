@@ -146,8 +146,8 @@ public class PropHunt extends JavaPlugin {
             return;
         }
         new ShopSettings(this);
-        ShopSettings.loadShopItems(this);
         shopConfig = new ShopConfig(this);
+        ShopSettings.loadShopItems(this);
         if (ShopSettings.usingVault) {
             vaultUtils = new VaultUtils(this);
         } else {
