@@ -59,7 +59,7 @@ public class ShopSettings {
             ItemStack stack = parseStringToStack(plugin, Id);
             if (stack != null) {
                 ShopItem item = new ShopItem(plugin, stack, name, (int) cost, getStackPermission(stack));
-                blockChoices.add(item);
+                itemChoices.add(item);
             } else {
                 plugin.getLogger().warning("DISABLING SHOP, error with item : " + name);
                 return null;
