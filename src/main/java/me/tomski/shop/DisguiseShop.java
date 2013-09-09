@@ -30,6 +30,7 @@ public class DisguiseShop implements Listener {
 
 
     public void openDisguiseShop(Player p) {
+        System.out.println(ShopSettings.blockChoices.size());
         Inventory i = Bukkit.createInventory(p, getShopSize(ShopSettings.blockChoices.size()), ChatColor.DARK_AQUA + "Disguise Shop");
         for (ShopItem item : ShopSettings.blockChoices) {
             item.addToInventory(i, p);
