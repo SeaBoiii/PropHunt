@@ -293,8 +293,9 @@ public class PropHunt extends JavaPlugin {
         }
         if (getConfig().contains("ShopSettings")) {
             ShopSettings.enabled = getConfig().getBoolean("ShopSettings.use-shop");
-            ShopSettings.currencyName = getConfig().getString("ShopSettings.currency-name");
             ShopSettings.usingVault = getConfig().getBoolean("ShopSettings.use-vault-for-currency");
+            ShopSettings.currencyName = getConfig().getString("ShopSettings.currency-name");
+
             if (ShopSettings.enabled) {
                 shopSettings = new ShopSettings(this);
                 shopSettings.loadShopItems(this);

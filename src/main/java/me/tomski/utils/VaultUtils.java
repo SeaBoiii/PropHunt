@@ -24,6 +24,7 @@ public class VaultUtils {
         }
         if (setupEconomy()) {
             ShopSettings.enabled = true;
+            ShopSettings.currencyName = economy.currencyNamePlural();
             plugin.getLogger().info("Vault Economy found!");
             ShopSettings.economyType = EconomyType.VAULT;
         } else {
