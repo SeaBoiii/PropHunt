@@ -145,9 +145,10 @@ public class PropHunt extends JavaPlugin {
             getLogger().info("Not using shop!");
             return;
         }
-        new ShopSettings(this);
+        shopSettings = new ShopSettings(this);
         shopConfig = new ShopConfig(this);
-        ShopSettings.loadShopItems(this);
+        shopSettings.loadShopItems(this);
+
         if (ShopSettings.usingVault) {
             vaultUtils = new VaultUtils(this);
         } else {
@@ -200,6 +201,10 @@ public class PropHunt extends JavaPlugin {
 
     public ShopManager getShopManager() {
         return shopManager;
+    }
+
+    public ShopSettings getShopSettings() {
+        return shopSettings;
     }
 
     private void usingCustomTab() {

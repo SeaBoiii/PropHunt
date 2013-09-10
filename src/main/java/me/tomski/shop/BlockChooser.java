@@ -38,8 +38,8 @@ public class BlockChooser implements Listener {
             PropHuntMessaging.sendMessage(p, MessageBank.NOT_IN_LOBBY.getMsg());
             return;
         }
-        Inventory inv = Bukkit.createInventory(p, getShopSize(ShopSettings.blockChoices.size()), ChatColor.DARK_AQUA + "Disguise Selector");
-        for (ShopItem sI : ShopSettings.blockChoices) {
+        Inventory inv = Bukkit.createInventory(p, getShopSize(plugin.getShopSettings().blockChoices.size()), ChatColor.DARK_AQUA + "Disguise Selector");
+        for (ShopItem sI : plugin.getShopSettings().blockChoices) {
             sI.addToInventory(inv, p);
         }
         p.openInventory(inv);

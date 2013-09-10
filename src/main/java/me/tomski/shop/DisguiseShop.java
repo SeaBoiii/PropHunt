@@ -28,11 +28,9 @@ public class DisguiseShop implements Listener {
         this.plugin = plugin;
     }
 
-
     public void openDisguiseShop(Player p) {
-        System.out.println(ShopSettings.blockChoices.size());
-        Inventory i = Bukkit.createInventory(p, getShopSize(ShopSettings.blockChoices.size()), ChatColor.DARK_AQUA + "Disguise Shop");
-        for (ShopItem item : ShopSettings.blockChoices) {
+        Inventory i = Bukkit.createInventory(p, getShopSize(plugin.getShopSettings().blockChoices.size()), ChatColor.DARK_AQUA + "Disguise Shop");
+        for (ShopItem item : plugin.getShopSettings().blockChoices) {
             item.addToInventory(i, p);
         }
         addCurrencyItem(i, p);
@@ -44,13 +42,22 @@ public class DisguiseShop implements Listener {
     public void onInventoryClick(final InventoryClickEvent e) {
         if (inMenu.contains((Player) e.getWhoClicked())) {
             if (e.getCurrentItem() != null) {
-                for (ShopItem item : ShopSettings.blockChoices) {
+                for (ShopItem item : plugin.getShopSettings().blockChoices) {
                     if (item.itemStack.getType().equals(e.getCurrentItem().getType())) {
-                        if (item.itemStack.getData().getData() == e.getCurrentItem().getData().getData()) {
-                            item.buyItem((Player) e.getWhoClicked());
-                            e.getView().close();
+                        if (item.itemStack.getData() != null || item.itemStack.getData().getData() != 0) {
+                            if (item.itemStack.getData().getData() == e.getCurrentItem().getData().getData()) {
+                                item.buyItem((Player) e.getWhoClicked());
+                                e.getView().close();
+                                return;
+                            }
                         }
+                        item.buyItem((Player) e.getWhoClicked());
+                        e.getView().close();
+                        return;
                     }
+                }
+                if (e.getCurrentItem().getType().equals(Material.EMERALD)) {
+                    e.setCancelled(true);
                 }
             }
         }
@@ -71,7 +78,7 @@ public class DisguiseShop implements Listener {
         currencyLore.add(ChatColor.GREEN + "" + getCurrencyBalance(p));
         currencyMeta.setLore(currencyLore);
         currency.setItemMeta(currencyMeta);
-        i.setItem(i.getSize(), currency);
+        i.setItem(i.getSize()-1, currency);
     }
 
 

@@ -10,6 +10,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ShopItem {
@@ -30,6 +31,7 @@ public class ShopItem {
         this.itemCost = cost;
         this.itemPermission = permission;
         this.itemStack = makeItem();
+        this.description = new ArrayList<String>();
     }
 
     public void addToInventory(Inventory i, Player p) {
@@ -38,16 +40,20 @@ public class ShopItem {
             description.add(ChatColor.GRAY + "Already purchased!");
         } else {
             description.clear();
-            description.add(ChatColor.GOLD + "Cost: " + itemCost);
+            description.add(ChatColor.GREEN + "Cost: " + itemCost);
         }
-        i.addItem(itemStack.clone());
+        ItemStack stack = itemStack.clone();
+        ItemMeta newMeta = stack.getItemMeta();
+        newMeta.setLore(description);
+        stack.setItemMeta(newMeta);
+        i.addItem(stack);
     }
 
     private ItemStack makeItem() {
         ItemMeta im = itemStack.getItemMeta();
         String name = itemStack.getType().name().toLowerCase().replaceAll("_", " ");
         String finalName = name.substring(0, 1).toUpperCase() + name.substring(1);
-        im.setDisplayName(ChatColor.GOLD + name);
+        im.setDisplayName(ChatColor.GOLD + finalName);
         itemStack.setItemMeta(im);
         return itemStack;
     }

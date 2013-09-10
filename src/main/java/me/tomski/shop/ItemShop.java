@@ -30,8 +30,8 @@ public class ItemShop implements Listener {
 
 
     public void openMainShop(Player p) {
-        Inventory i = Bukkit.createInventory(p, getShopSize(ShopSettings.blockChoices.size()), ChatColor.DARK_AQUA + "Item Shop");
-        for (ShopItem item : ShopSettings.itemChoices) {
+        Inventory i = Bukkit.createInventory(p, getShopSize(plugin.getShopSettings().itemChoices.size()), ChatColor.DARK_AQUA + "Item Shop");
+        for (ShopItem item : plugin.getShopSettings().itemChoices) {
             item.addToInventory(i, p);
         }
         addCurrencyItem(i, p);
@@ -43,13 +43,22 @@ public class ItemShop implements Listener {
     public void onInventoryClick(final InventoryClickEvent e) {
         if (inMenu.contains((Player) e.getWhoClicked())) {
             if (e.getCurrentItem() != null) {
-                for (ShopItem item : ShopSettings.itemChoices) {
+                for (ShopItem item : plugin.getShopSettings().itemChoices) {
                     if (item.itemStack.getType().equals(e.getCurrentItem().getType())) {
-                        if (item.itemStack.getData().getData() == e.getCurrentItem().getData().getData()) {
-                            item.buyItem((Player) e.getWhoClicked());
-                            e.getView().close();
+                        if (item.itemStack.getData() != null || item.itemStack.getData().getData() != 0) {
+                            if (item.itemStack.getData().getData() == e.getCurrentItem().getData().getData()) {
+                                item.buyItem((Player) e.getWhoClicked());
+                                e.getView().close();
+                                return;
+                            }
                         }
+                        item.buyItem((Player) e.getWhoClicked());
+                        e.getView().close();
+                        return;
                     }
+                }
+                if (e.getCurrentItem().getType().equals(Material.EMERALD)) {
+                    e.setCancelled(true);
                 }
             }
         }
@@ -70,7 +79,7 @@ public class ItemShop implements Listener {
         currencyLore.add(ChatColor.GREEN + "" + getCurrencyBalance(p));
         currencyMeta.setLore(currencyLore);
         currency.setItemMeta(currencyMeta);
-        i.setItem(i.getSize(), currency);
+        i.setItem(i.getSize()-1, currency);
     }
 
     private int getShopSize(int n) {

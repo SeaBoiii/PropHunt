@@ -16,20 +16,24 @@ import java.util.Set;
 
 public class ShopSettings {
 
-    public static List<ShopItem> blockChoices = new ArrayList<ShopItem>();
-    public static List<ShopItem> itemChoices = new ArrayList<ShopItem>();
+    public List<ShopItem> blockChoices = new ArrayList<ShopItem>();
+    public List<ShopItem> itemChoices = new ArrayList<ShopItem>();
 
     public static String currencyName;
     public static boolean usingVault;
     public static boolean enabled;
     public static EconomyType economyType;
-    private static PropHunt plugin;
+    private PropHunt plugin;
+
+    private static PropHunt staticPlugin;
 
     public ShopSettings(PropHunt plugin) {
+        staticPlugin = plugin;
         this.plugin = plugin;
     }
 
-    public static List<ShopItem> generateBlockChoices(PropHunt plugin, ShopConfig shopConfig) {
+
+    public List<ShopItem> generateBlockChoices(PropHunt plugin, ShopConfig shopConfig) {
         String path = "Disguises";
         Set<String> keys = shopConfig.getShopConfig().getConfigurationSection(path).getKeys(false);
         for (String key : keys) {
@@ -40,16 +44,17 @@ public class ShopSettings {
             if (stack != null) {
                 ShopItem item = new ShopItem(plugin, stack, name, (int) cost, getStackPermission(stack));
                 blockChoices.add(item);
+                plugin.getLogger().info("Loaded Shop disguise: " + key);
             } else {
                 plugin.getLogger().warning("DISABLING SHOP, error with item : " + name);
-                return null;
+                return blockChoices;
             }
         }
-        return null;
+        return blockChoices;
     }
 
 
-    public static List<ShopItem> generateItemChoices(PropHunt plugin, ShopConfig shopConfig) {
+    public List<ShopItem> generateItemChoices(PropHunt plugin, ShopConfig shopConfig) {
         String path = "Items";
         Set<String> keys = shopConfig.getShopConfig().getConfigurationSection(path).getKeys(false);
         for (String key : keys) {
@@ -60,17 +65,18 @@ public class ShopSettings {
             if (stack != null) {
                 ShopItem item = new ShopItem(plugin, stack, name, (int) cost, getStackPermission(stack));
                 itemChoices.add(item);
+                plugin.getLogger().info("Loaded Shop item: " + key);
             } else {
                 plugin.getLogger().warning("DISABLING SHOP, error with item : " + name);
-                return null;
+                return itemChoices;
             }
         }
-        return null;
+        return itemChoices;
     }
 
     public static ItemStack getCustomItem(String s) {
         ItemStack stack;
-        String mat = plugin.shopConfig.getShopConfig().getString("PropHuntItems." + s);
+        String mat = staticPlugin.shopConfig.getShopConfig().getString("PropHuntItems." + s);
         if (mat.split(":").length == 2) {
             int id = Integer.valueOf(s.split(":")[0]);
             int damage = Integer.valueOf(s.split(":")[1]);
@@ -82,13 +88,13 @@ public class ShopSettings {
                 return stack;
             }
         } else {
-            plugin.getLogger().warning("Error with Custom item: " + s);
+            staticPlugin.getLogger().warning("Error with Custom item: " + s);
             return null;
         }
         return null;
     }
 
-    public static void loadShopItems(PropHunt plugin) {
+    public void loadShopItems(PropHunt plugin) {
         blockChoices = generateBlockChoices(plugin, plugin.shopConfig);
         if (blockChoices == null)
             enabled = false;
@@ -98,7 +104,7 @@ public class ShopSettings {
         }
     }
 
-    private static String getStackPermission(ItemStack currentItem) {
+    private String getStackPermission(ItemStack currentItem) {
         if (currentItem.getData().getData() == 0) {
             return "prophunt.blockchooser." + currentItem.getTypeId();
         } else {
@@ -107,7 +113,7 @@ public class ShopSettings {
     }
 
 
-    private static ItemStack parseStringToStack(PropHunt plugin, String s) {
+    private ItemStack parseStringToStack(PropHunt plugin, String s) {
         ItemStack stack;
         if (s.split(":").length == 2) {
             int id = Integer.valueOf(s.split(":")[0]);

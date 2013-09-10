@@ -92,18 +92,23 @@ public class MainShop implements Listener {
             if (e.getCurrentItem() != null) {
                 if (!e.getCurrentItem().getType().equals(Material.AIR)) {
                     if (e.getCurrentItem().getType().equals(Material.ENDER_CHEST)) {
+                        e.setCancelled(true);
                         e.getView().close();
                         plugin.getShopManager().getBlockChooser().openBlockShop((Player) e.getWhoClicked());
                     } else if (e.getCurrentItem().getType().equals(Material.GOLD_BLOCK)) {
+                        e.setCancelled(true);
                         e.getView().close();
                         plugin.getShopManager().getDisguiseShop().openDisguiseShop((Player) e.getWhoClicked());
                     } else if (e.getCurrentItem().getType().equals(Material.DIAMOND_SWORD)) {
+                        e.setCancelled(true);
                         e.getView().close();
                         plugin.getShopManager().getItemShop().openMainShop((Player) e.getWhoClicked());
                     } else if (e.getCurrentItem().getType().equals(Material.CHEST)) {
+                        e.setCancelled(true);
                         e.getView().close();
                         plugin.getShopManager().getLoadoutChooser().openBlockShop((Player) e.getWhoClicked());
                     } else {
+                        e.setCancelled(true);
                         e.getView().close();
                     }
                 }
