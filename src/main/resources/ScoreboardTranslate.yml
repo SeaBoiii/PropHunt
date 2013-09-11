@@ -1,6 +1,9 @@
 ##### Translate file for the scoreboard
 # Translate the scoreboard?
 use-translate: false
+
+# Note char limit of <= 16, including colours!
+
 # Words to be translated
 Translate-Words:
     Players: Players
