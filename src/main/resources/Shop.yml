@@ -34,7 +34,7 @@ Items:
 #
 #
 # The following config for the Items: would not give the player anything special, as the item 338 is not a
-# unique PropHuntItem
+# unique PropHuntItem, so they would just recieve the item 338 when the game starts
 #   1:
 #     Name: First Seeker
 #     Id: 338
