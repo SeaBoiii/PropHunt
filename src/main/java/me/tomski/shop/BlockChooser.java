@@ -52,6 +52,7 @@ public class BlockChooser implements Listener {
             if (e.getCurrentItem() != null) {
                 if (!hasPermsForBlock((Player) e.getWhoClicked(), e.getCurrentItem())) {
                     PropHuntMessaging.sendMessage((Player) e.getWhoClicked(), MessageBank.NO_BLOCK_CHOICE_PERMISSION.getMsg());
+                    e.setCancelled(true);
                     return;
                 }
                 if (e.getCurrentItem().getType().equals(Material.AIR)) {
