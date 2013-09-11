@@ -1,7 +1,11 @@
+# Disguises you want in the Disguise Shop
 Disguises:
     1:
+      # Name as you want it to appear in the shop
       Name: BookCase
+      # Id of the disguise
       Id: 47
+      # Cost of the disguise
       Cost: 200
     2:
       Name: Diamond Block
@@ -11,12 +15,38 @@ Disguises:
       Name: Red Wool
       Id: "35:14"
       Cost: 250
+# Items you want players to be able to buy in the Item Shop
 Items:
     1:
+      # Name of the item
       Name: First Seeker
+      # Item id of the item
       Id: 339
+      # Cost of the item
       Cost: 250
+##################################################
 ## Manage all ids for special items here, set to 0 if you dont want to use
+# Unique items to PropHunt that have special effects
+#
+# Exmaple of use:
+# FirstSeeker item is 339, there is an item with Id 339 in the ItemShop, this means that if the player
+# buys the First Seeker item from the shop, they will get the special item as defined below
+#
+#
+# The following config for the Items: would not give the player anything special, as the item 338 is not a
+# unique PropHuntItem
+#   1:
+#     Name: First Seeker
+#     Id: 338
+#     Cost: 250
+# PropHuntItems:
+#  FirstSeeker: 339
+#  ForceHider: 354
+#
+##################################################
+
 PropHuntItems:
+  # First Seeker item will let the player become the first seeker
   FirstSeeker: 339
+  # Force hider will gaurentee the player to be a hider
   ForceHider: 354
