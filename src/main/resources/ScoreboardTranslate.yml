@@ -1,5 +1,7 @@
 ##### Translate file for the scoreboard
+# Translate the scoreboard?
 use-translate: false
+# Words to be translated
 Translate-Words:
     Players: Players
     Seekers: Seekers
@@ -9,6 +11,7 @@ Translate-Words:
     Starting-In: Starting in
     Solid-Time: SoldTime
     Solid: SOLID
+# Disguises to be translated
 Disguise-Translations:
     WOODEN_DOOR: Wooden Door
     SANDSTONE_STAIRS: Sandstone Stairs
