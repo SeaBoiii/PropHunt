@@ -1,59 +1,111 @@
+# If you want to use your own messages, copy the Language.yml file, (Do not delete language file)
+# And rename it, then put the title of the renamed file in "UseLanguageFile:"
 UseLanguageFile: "English.yml"
+# Players needed to start a game
 players-to-start: 2
+# Time between notifying players of time left, and seeker-demage if in use
 interval: 60
+# Time between games in the lobby if using dedicated or automatic mode
 lobby-time: 60
+# Starting round time
 starting-time: 300
+# Damage to give seeker each interval time. Set to 0 if you want to disable
 seeker-damage: 2
+# Amount of time to be added to the round time if a hider is killed
 time-reward: 30
+# Automatic mode
+# Use this mode if you want PropHunt to auto rotate through your maps, doesn't need a player to host
 automatic: false
+# Dedicated Mode
+# Use this mode if you want to dedicate your server to PropHunt. No ./ph leave or ./ph join
+# If a player joins, they are put in the lobby. If you use this, set automatic to true also
 dedicated: false
+# Only works if you are using the custom tab. Will display the disguises that you are chasing
+# in the last 30 seconds of the game
 blow-disguises-last-30-seconds: true
+# Delay the seeker at the start of the round to give hiders a chance to hide
 seeker-delay-time: 0
+# Blind the seeker during seeker-delay-time, uses a blind effect
 blind-seeker-in-delay: true
+# How many lives seekers sohuld have before they are removed from the game
 seeker-lives: 1
+# If you want to have hiders snap to integer coordinates when crouching. Gives a more reaslitic disguise of a block
 crouching-block-lock: true
+# Use solid block mechanics (Actually turn into a solid block after solid-block-time of not moving)
 use-solid-block: true
+# Time untill solid block
 solid-block-time: 5
+# Use the custom Tab scoreboard (You need TabAPI)
 using-custom-tab: true
+# Use hit markers when hiders are hit
 use-hitmarkers: true
+# Use hit sounds when hiders are hit
 use-hitsounds: true
+# Bypass the respawn screen
 auto-respawn: true
+# Use the vanilla scoreboard to display infomation
 use-side-scoreboard-stats: true
+# Replace the seeker if the first seeker dies or quits. Prevents games being ruined
 choose-new-seeker-if-original-dies: true
+# Automation Settings
+# Mainly used for dedicated servers
 AutomationSettings:
+  # set to true if you want automation to run
   dispatch-commands-after-x-games: false
+  # Number of games completed before commands are run
   number-of-games: 10
+  # Commmands to be run when the number-of-games is met
   commands:
     - say PropHunt Server resetting!
     - give tomskied 357 1
+    # kickalltohub is a custom command for bungee servers. It will put all your players back to the hub in bungee settings
     - kickalltohub
     - stop
+# Server Settings
+# General server settings utilities
 ServerSettings:
+  # Override your MOTD with PropHunt game status
   force-motd-prophunt: false
+  # Block access to the server if the game is in progress (OPs and Permission owners override this)
   block-access-whilst-in-game: false
+  # Force max players, overrides max players in server.properties. Usefull for running custom Tab, so youw ant a
+  # 3 wide scoreboard, but you dont want 60 players on. Set ServerProperties players to 60, and a lower amount here
   force-max-players: false
+  # Amount of players allowed on
   force-max-players-size: 36
+# Settings for bungee setups, dont use unless you use PropHuntSigns
 BungeeSettings:
+  # Enable/disable bungee support
   using-bungee: false
+  # Kick back to hub after game is over
   kick-back-to-hub: false
+  # Hub name, the server where your signs are, bungee server name
   hub-name: hub
+  # How often you want data to be sent to PropHunt Signs. Default 1 second
   ping-interval-ticks: 20
-  #As is in your bungee config.yml
+  # The current server name
+  # As is in your bungee config.yml
   this-bungee-server-name: prophunt1
+# Shop Settings! for ./ph shop
 ShopSettings:
+  # Do you want to use the shop?
   use-shop: false
+  # Currency name if you are using the PropHunt currency
   currency-name: "Cookies"
+  # Use vault instead of the prophunt currency
   use-vault-for-currency: false
-  block-choices:
-  - 2
-  - 4
-  - "34:4"
+# Database settings for default PropHunt currency
 DatabaseSettings:
     type: mysql
+    # Host of your database
     host: localhost
+    # Database name, will create a new one if it doesnt exist
     database: minecraft
+    # Database username
     username: root
+    # Databse password
     password: minecraft
+# Default Hider Class loadout
 HiderClass:
   Inventory: 283:1,357:20
   Effects: 1:20000:1,8:20000:1
@@ -61,6 +113,7 @@ HiderClass:
   Chestplate: 299 0:1
   Leggings: 300 1:2
   Boots: 301 2:4
+# Default Seeker Class loadout
 SeekerClass:
   Inventory: 261:1,262:64,391:10,366:10
   Effects: 1:20000:1
