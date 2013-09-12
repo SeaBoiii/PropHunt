@@ -153,6 +153,7 @@ public class PropHunt extends JavaPlugin {
             vaultUtils = new VaultUtils(this);
         } else {
             SQL = new SqlConnect(this);
+            vaultUtils = new VaultUtils(this, true);
         }
     }
 

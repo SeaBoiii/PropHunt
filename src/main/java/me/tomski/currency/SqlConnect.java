@@ -18,19 +18,23 @@ public class SqlConnect {
         try {
             testConnection();
             enabled = true;
-            ShopSettings.economyType = EconomyType.VAULT;
+            ShopSettings.economyType = EconomyType.PROPHUNT;
         } catch (SQLException e) {
-            plugin.getLogger().info("Sql not able to connect! Disabling Sql currency!");
+            plugin.getLogger().info("Sql not able to connect! Disabling Sql currency! STACK BELOW ;)");
+            e.printStackTrace();
+
             enabled = false;
         }
     }
 
 
     private void testConnection() throws SQLException {
+        System.out.println("CONNECTING TO " + settings.getConnector() + settings.getHost() + ":" + settings.getPort() + "/" + "   " + settings.getUsername() + " " + settings.getPass());
         Connection conn = DriverManager.getConnection(settings.getConnector() + settings.getHost() + ":" + settings.getPort() + "/", settings.getUsername(), settings.getPass()); //Creates the connection
         PreparedStatement sampleQueryStatement = conn.prepareStatement("CREATE DATABASE IF NOT EXISTS " + settings.getDatabase()); //gen new Database if required
+        sampleQueryStatement.execute();
         sampleQueryStatement.executeUpdate("USE " + settings.getDatabase());
-        sampleQueryStatement.executeUpdate("CREATE TABLE IF NOT EXISTS PropHuntCurrency (playerUniqueId INT PRIMARY KEY AUTO_INCREMENT," + "playerName TEXT," + "credits INT)");
+        sampleQueryStatement.executeUpdate("CREATE TABLE IF NOT EXISTS PropHuntCurrency (playerName VARCHAR(255) PRIMARY KEY," + "credits INT)");
         sampleQueryStatement.executeUpdate();
         sampleQueryStatement.close();
         conn.close();
@@ -58,7 +62,7 @@ public class SqlConnect {
                 plugin.getLogger().info("Error with database! Multiple files with the same name");
             } else {
                 rs.first();
-                return rs.getInt(3);
+                return rs.getInt(2);
             }
             conn.close();
         } catch (SQLException ex) {
@@ -71,8 +75,8 @@ public class SqlConnect {
         try {
             Connection conn = DriverManager.getConnection(settings.getUrl(), settings.getUsername(), settings.getPass()); //Creates the connection
             Statement st = conn.createStatement();
-            st.executeUpdate("INSERT INTO PropHuntCurrency (playerUniqueId, `playerName`, credits) " +
-                    "VALUES (" + 0 + ", '" + playerName + "', " + amount + ")" +
+            st.executeUpdate("INSERT INTO PropHuntCurrency (`playerName`, credits) " +
+                    "VALUES ('" + playerName + "', " + amount + ")" +
                     " ON DUPLICATE KEY UPDATE playerName='" + playerName + "', credits=" + amount + "");
             conn.close();
         } catch (SQLException ex) {

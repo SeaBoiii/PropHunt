@@ -99,6 +99,8 @@ DatabaseSettings:
     type: mysql
     # Host of your database
     host: localhost
+    # Port of your database
+    port: 3306
     # Database name, will create a new one if it doesnt exist
     database: minecraft
     # Database username
